@@ -67,7 +67,7 @@
                           <Component id="jtnombre" alignment="0" max="32767" attributes="0"/>
                           <Component id="jtdni" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                       <Component id="jbbuscar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
@@ -110,7 +110,7 @@
                   <Component id="jLabel6" max="32767" attributes="0"/>
                   <Component id="jDateChooser1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="69" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbsalir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbeliminar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -160,6 +160,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbsalirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbeliminar">
       <Properties>
