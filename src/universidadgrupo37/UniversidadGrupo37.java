@@ -1,6 +1,5 @@
 package universidadgrupo37;
 
-//Disculpen por esto, estoy probando que me funcione bien el Git :S
 
 //import java.time.LocalDate;
 //import universidadgrupo37.accesoADatos.AlumnoData;
