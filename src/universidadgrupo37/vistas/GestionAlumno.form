@@ -71,7 +71,10 @@
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jtapellido" min="-2" pref="132" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jtapellido" min="-2" pref="132" max="-2" attributes="0"/>
+                          <Component id="jdcfnac" min="-2" pref="163" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -104,8 +107,11 @@
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jrbestado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="17" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel6" min="-2" pref="17" max="-2" attributes="0"/>
+                  <Component id="jdcfnac" min="-2" pref="23" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="69" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbsalir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -193,6 +199,8 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtapellido">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jdcfnac">
     </Component>
   </SubComponents>
 </Form>

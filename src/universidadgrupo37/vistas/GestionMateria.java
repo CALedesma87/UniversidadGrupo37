@@ -39,8 +39,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jrbestado = new javax.swing.JRadioButton();
         jbsalir = new javax.swing.JButton();
         jbguardar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbeliminar = new javax.swing.JButton();
+        jbnuevo = new javax.swing.JButton();
         jbbuscar = new javax.swing.JButton();
 
         setClosable(true);
@@ -65,9 +65,9 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
         jbguardar.setText("Guardar");
 
-        jButton3.setText("Eliminar");
+        jbeliminar.setText("Eliminar");
 
-        jButton4.setText("Nuevo");
+        jbnuevo.setText("Nuevo");
 
         jbbuscar.setText("Buscar");
 
@@ -92,9 +92,9 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton4)
+                                .addComponent(jbnuevo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(jbeliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbguardar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,15 +133,15 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrbestado))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jrbestado)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
                     .addComponent(jbguardar)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jbeliminar)
+                    .addComponent(jbnuevo))
                 .addContainerGap())
         );
 
@@ -154,15 +154,15 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton jbbuscar;
+    private javax.swing.JButton jbeliminar;
     private javax.swing.JButton jbguardar;
+    private javax.swing.JButton jbnuevo;
     private javax.swing.JButton jbsalir;
     private javax.swing.JRadioButton jrbestado;
     private javax.swing.JTextField jtanio;

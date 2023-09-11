@@ -31,12 +31,12 @@ private DefaultTableModel tabla= new DefaultTableModel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jrbinscriptas = new javax.swing.JRadioButton();
+        jrbnoinscriptas = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jbanular = new javax.swing.JButton();
+        jbsalir = new javax.swing.JButton();
+        jbanularinscipcion = new javax.swing.JButton();
         jbinscribir = new javax.swing.JButton();
 
         setClosable(true);
@@ -73,14 +73,14 @@ private DefaultTableModel tabla= new DefaultTableModel();
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Salir");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbsalir.setText("Salir");
+        jbsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbsalirActionPerformed(evt);
             }
         });
 
-        jbanular.setText("Anular Inscripcion");
+        jbanularinscipcion.setText("Anular Inscripcion");
 
         jbinscribir.setText("Inscribir");
 
@@ -101,7 +101,7 @@ private DefaultTableModel tabla= new DefaultTableModel();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(jRadioButton1)
+                                .addComponent(jrbinscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4))
                             .addComponent(jLabel2))
@@ -109,7 +109,7 @@ private DefaultTableModel tabla= new DefaultTableModel();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton2)
+                                .addComponent(jrbnoinscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)))))
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -119,9 +119,9 @@ private DefaultTableModel tabla= new DefaultTableModel();
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbinscribir)
                         .addGap(43, 43, 43)
-                        .addComponent(jbanular)
+                        .addComponent(jbanularinscipcion)
                         .addGap(63, 63, 63)
-                        .addComponent(jButton1))
+                        .addComponent(jbsalir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -137,17 +137,18 @@ private DefaultTableModel tabla= new DefaultTableModel();
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jrbinscriptas, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jrbnoinscriptas)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jbanular)
+                    .addComponent(jbsalir)
+                    .addComponent(jbanularinscipcion)
                     .addComponent(jbinscribir))
                 .addContainerGap())
         );
@@ -159,26 +160,26 @@ private DefaultTableModel tabla= new DefaultTableModel();
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
         // TODO add your handling code here:
         setVisible(false);  //Cerrar ventana
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbsalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton jbanular;
+    private javax.swing.JButton jbanularinscipcion;
     private javax.swing.JButton jbinscribir;
+    private javax.swing.JButton jbsalir;
     private javax.swing.JComboBox<String> jcbalumnos;
+    private javax.swing.JRadioButton jrbinscriptas;
+    private javax.swing.JRadioButton jrbnoinscriptas;
     // End of variables declaration//GEN-END:variables
 
  private void crearCabecera(){

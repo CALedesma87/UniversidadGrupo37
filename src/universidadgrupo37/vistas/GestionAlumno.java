@@ -33,6 +33,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         jtdni = new javax.swing.JTextField();
         jbbuscar = new javax.swing.JButton();
         jtapellido = new javax.swing.JTextField();
+        jdcfnac = new com.toedter.calendar.JDateChooser();
 
         jButton3.setText("Guardar");
 
@@ -115,7 +116,9 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                         .addComponent(jbbuscar)
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdcfnac, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -140,8 +143,10 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jrbestado))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcfnac, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
@@ -165,14 +170,21 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         
         AlumnoData alu = new AlumnoData();
         try{
+            if (text.isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
+            }
             int numconver = Integer.parseInt(text);
             Alumno en = alu.buscarAlumnoPorDni(numconver);
             JOptionPane.showMessageDialog(null, "[Nombre]: "+en.getNombre()
             + " [Apellido]: "+en.getApellido()+" [DNI]: "+en.getDni()+ " [Fecha de nacimiento]: "+ en.getFechaNacimiento()
             + " [ID]: "+ en.getIdAlumno());
+            jtnombre.setText(en.getNombre()); 
+            jtapellido.setText(en.getApellido());
         }
         catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Ingrese solo números.");
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "El alumno no se encuentra en la Base de Datos.");
         }
     }//GEN-LAST:event_jbbuscarActionPerformed
 
@@ -211,6 +223,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbguardar;
     private javax.swing.JButton jbnuevo;
     private javax.swing.JButton jbsalir;
+    private com.toedter.calendar.JDateChooser jdcfnac;
     private javax.swing.JRadioButton jrbestado;
     private javax.swing.JTextField jtapellido;
     private javax.swing.JTextField jtdni;
