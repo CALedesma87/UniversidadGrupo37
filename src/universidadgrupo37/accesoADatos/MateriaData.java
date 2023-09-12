@@ -79,7 +79,18 @@ public class MateriaData {
 
     public List<Materia> listarMaterias(int id){
         List <Materia> materias = new ArrayList<Materia>();
-
-
+        String sql = "SELECT * FROM materia WHERE activo = 1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                Materia materia=new Materia();
+               
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia");
+        }
+ 
+      return materias;
     }
 }
