@@ -48,7 +48,7 @@ public class MateriaData {
     public void modificarMateria(Materia materia){}
 
     public void eliminarMateria(int id){
-    String sql="UPDATE materia SET nombre=?,anioMateria=?,estado=? WHERE idMatria=? ";
+    String sql="UPDATE materia SET activo=0 WHERE idMatria=? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -56,7 +56,7 @@ public class MateriaData {
             if(exito==1){
              JOptionPane.showMessageDialog(null,"Materia eliminada");
          }
-            
+           ps.close();  
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia");
         }
