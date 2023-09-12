@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadgrupo37.entidades.Materia;
 
@@ -45,7 +47,20 @@ public class MateriaData {
 
     public void modificarMateria(Materia materia){}
 
-    public void eliminarMateria(int id){}
+    public void eliminarMateria(int id){
+    String sql="UPDATE materia SET nombre=?,anioMateria=?,estado=? WHERE idMatria=? ";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+        int exito=ps.executeUpdate();
+            if(exito==1){
+             JOptionPane.showMessageDialog(null,"Materia eliminada");
+         }
+            
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia");
+        }
+    }
 
     public List<Materia> listarMaterias(int id){
         List <Materia> materias = new ArrayList<Materia>();
