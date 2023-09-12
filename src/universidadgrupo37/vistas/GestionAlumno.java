@@ -1,6 +1,7 @@
 
 package universidadgrupo37.vistas;
 
+import java.sql.Date;
 import javax.swing.JOptionPane;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.entidades.Alumno;
@@ -67,6 +68,11 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         });
 
         jbnuevo.setText("Nuevo");
+        jbnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbnuevoActionPerformed(evt);
+            }
+        });
 
         jbguardar.setText("Guardar");
 
@@ -175,16 +181,24 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             }
             int numconver = Integer.parseInt(text);
             Alumno en = alu.buscarAlumnoPorDni(numconver);
-            JOptionPane.showMessageDialog(null, "[Nombre]: "+en.getNombre()
-            + " [Apellido]: "+en.getApellido()+" [DNI]: "+en.getDni()+ " [Fecha de nacimiento]: "+ en.getFechaNacimiento()
-            + " [ID]: "+ en.getIdAlumno());
+           // JOptionPane.showMessageDialog(null, "[Nombre]: "+en.getNombre()
+           // + " [Apellido]: "+en.getApellido()+" [DNI]: "+en.getDni()+ " [Fecha de nacimiento]: "+ en.getFechaNacimiento()
+            //+ " [ID]: "+ en.getIdAlumno());
             jtnombre.setText(en.getNombre()); 
             jtapellido.setText(en.getApellido());
+            jrbestado.setSelected(en.isEstado());
+            if (en.getFechaNacimiento() != null) {
+    jdcfnac.setDate(Date.valueOf(en.getFechaNacimiento()));
+} else {
+    jdcfnac.setDate(null); // Para borrar la fecha si no hay fecha de nacimiento
+}
+            
         }
         catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Ingrese solo números.");
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(null, "El alumno no se encuentra en la Base de Datos.");
+            limpiarPlanilla();
         }
     }//GEN-LAST:event_jbbuscarActionPerformed
 
@@ -209,6 +223,11 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jbeliminarActionPerformed
 
+    private void jbnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnuevoActionPerformed
+        // TODO add your handling code here:
+        limpiarPlanilla();
+    }//GEN-LAST:event_jbnuevoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
@@ -229,4 +248,12 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtdni;
     private javax.swing.JTextField jtnombre;
     // End of variables declaration//GEN-END:variables
+
+private void limpiarPlanilla(){
+   jtapellido.setText(""); // Limpia los campos
+    jtnombre.setText("");
+    jtdni.setText("");
+    jrbestado.setSelected(false);
+    jdcfnac.setDate(null);
+}
 }
