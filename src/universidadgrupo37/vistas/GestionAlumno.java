@@ -2,6 +2,10 @@
 package universidadgrupo37.vistas;
 
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 import javax.swing.JOptionPane;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.entidades.Alumno;
@@ -75,6 +79,11 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         });
 
         jbguardar.setText("Guardar");
+        jbguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbguardarActionPerformed(evt);
+            }
+        });
 
         jbbuscar.setText("Buscar");
         jbbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +236,36 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         limpiarPlanilla();
     }//GEN-LAST:event_jbnuevoActionPerformed
+
+    private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
+        // TODO add your handling code here:
+      try{
+        // Obtener los valores de los campos
+        int dni = Integer.parseInt(jtdni.getText());
+        String apellido = jtapellido.getText();
+        String nombre = jtnombre.getText();
+        boolean estado = jrbestado.isSelected();
+       // Obtener la fecha de nacimiento en formato Date
+    java.util.Date utilDate = jdcfnac.getDate();
+    
+    // Convertir la fecha de util.Date a LocalDate
+    Instant instant = utilDate.toInstant();
+    LocalDate fechaNacimiento = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+
+
+        // Verificar que los campos obligatorios no estén vacíos
+        if (jtdni.getText().isEmpty() || apellido.isEmpty() || nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+            return;
+        }
+        Alumno alumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
+        AlumnoData alu = new AlumnoData();
+        alu.guardarAlumno(alumno);
+      }catch (NumberFormatException ex){
+          JOptionPane.showMessageDialog(null, "El Dni debe contener solo numero");
+      }
+    }//GEN-LAST:event_jbguardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
