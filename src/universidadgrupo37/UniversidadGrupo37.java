@@ -37,11 +37,14 @@ public class UniversidadGrupo37 {
 //        MateriaData md = new MateriaData();
 //        InscripcionData id = new InscripcionData();
 //        
-//        Alumno mish = ad.buscarAlumno(1);
+//        Alumno mish = ad.buscarAlumno(2);
 //        Materia mate = md.buscarMateria(2);
+//        
 //        Inscripcion insc = new Inscripcion(mish,mate,9);
-//        id.guardarInscripcion(insc);
-
+//      //id.guardarInscripcion(insc);
+//      //id.actualizarNota(2, 3, 9);
+//        id.borrarInscripcionMateriaAlumno(2, 2);
+            
     }
 
 }
