@@ -1,9 +1,13 @@
 package universidadgrupo37;
 
 
-//import java.time.LocalDate;
-//import universidadgrupo37.accesoADatos.AlumnoData;
-//import universidadgrupo37.entidades.Alumno;
+import java.time.LocalDate;
+import universidadgrupo37.accesoADatos.AlumnoData;
+import universidadgrupo37.accesoADatos.InscripcionData;
+import universidadgrupo37.accesoADatos.MateriaData;
+import universidadgrupo37.entidades.Alumno;
+import universidadgrupo37.entidades.Inscripcion;
+import universidadgrupo37.entidades.Materia;
 
 public class UniversidadGrupo37 {
 
@@ -28,6 +32,15 @@ public class UniversidadGrupo37 {
 //            System.out.println("-/ " +alumno.getDni());
 //            System.out.println("-/ " +alumno.getFechaNacimiento());
 //            System.out.println("-/ " +alumno.getIdAlumno());
+
+//        AlumnoData ad = new AlumnoData();
+//        MateriaData md = new MateriaData();
+//        InscripcionData id = new InscripcionData();
+//        
+//        Alumno mish = ad.buscarAlumno(1);
+//        Materia mate = md.buscarMateria(2);
+//        Inscripcion insc = new Inscripcion(mish,mate,9);
+//        id.guardarInscripcion(insc);
 
     }
 
