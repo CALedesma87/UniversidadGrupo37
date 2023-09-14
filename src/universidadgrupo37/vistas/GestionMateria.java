@@ -5,6 +5,12 @@
  */
 package universidadgrupo37.vistas;
 
+import java.sql.Date;
+import javax.swing.JOptionPane;
+import universidadgrupo37.accesoADatos.MateriaData;
+import universidadgrupo37.entidades.Alumno;
+import universidadgrupo37.entidades.Materia;
+
 /**
  *
  * @author Usuario
@@ -64,12 +70,27 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         jbguardar.setText("Guardar");
+        jbguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbguardarActionPerformed(evt);
+            }
+        });
 
         jbeliminar.setText("Eliminar");
 
         jbnuevo.setText("Nuevo");
+        jbnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbnuevoActionPerformed(evt);
+            }
+        });
 
         jbbuscar.setText("Buscar");
+        jbbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbbuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +171,71 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
         // TODO add your handling code here:
+        setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
+
+    private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
+        // TODO add your handling code here:
+        try{
+        // Obtener los valores de los campos
+        int codigo = Integer.parseInt(jtcodigo.getText());
+        String nombre = jtnombre.getText();
+        int anio = Integer.parseInt(jtanio.getText());
+        boolean estado = jrbestado.isSelected();
+        
+        if (jtcodigo.getText().isEmpty() || nombre.isEmpty() || jtanio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+            return;
+        }
+        //creamos un constructor de Materia y de MateriaData
+        Materia materia = new Materia(codigo, nombre, anio, estado);
+        MateriaData mat = new MateriaData();
+        //Verificamos si exite el id previamente
+        if(mat.existeMateria(codigo)){
+            JOptionPane.showMessageDialog(null, "El Id ya se encuentra asociado a una Materia");
+            
+        }else{
+        mat.guardarMateria(materia);
+        limpiarPlanilla();
+      }
+        
+        }catch (NumberFormatException ex){
+          JOptionPane.showMessageDialog(null, "El Id y el Año deben contener solo numero");
+      }
+    }//GEN-LAST:event_jbguardarActionPerformed
+
+    private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
+        // TODO add your handling code here:
+        
+          String text = jtcodigo.getText();
+          MateriaData mat =new MateriaData();
+          
+          try{
+            if (text.isEmpty()){
+            JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
+            }
+            int idmat = Integer.parseInt(text);
+            Materia mat1 = mat.buscarMateria(idmat);
+            jtnombre.setText(mat1.getNombre()); 
+            jtanio.setText(String.valueOf(mat1.getAnioMateria()));//convierte el int en String para poder setearlo en el TextField
+            jrbestado.setSelected(mat1.isActivo());
+          
+            
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Ingrese solo números.");
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "La materia no se encuentra en la Base de Datos.");
+           
+        }
+                           
+    }//GEN-LAST:event_jbbuscarActionPerformed
+
+    private void jbnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnuevoActionPerformed
+        // TODO add your handling code here:
+        
+        limpiarPlanilla();
+    }//GEN-LAST:event_jbnuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -169,4 +254,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtcodigo;
     private javax.swing.JTextField jtnombre;
     // End of variables declaration//GEN-END:variables
+
+private void limpiarPlanilla(){
+   jtcodigo.setText(""); // Limpia los campos
+    jtnombre.setText("");
+    jtanio.setText("");
+    jrbestado.setSelected(false);
+  }
 }

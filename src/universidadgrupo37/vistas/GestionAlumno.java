@@ -219,8 +219,9 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         
         try{
             int numconver = Integer.parseInt(text);
-            Alumno en = alu.buscarAlumno(numconver);
+            Alumno en = alu.buscarAlumnoPorDni(numconver);
             alu.eliminarAlumno(en.getIdAlumno());
+            
             
         }
         catch(NumberFormatException e){
@@ -261,7 +262,13 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         }
         Alumno alumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
         AlumnoData alu = new AlumnoData();
+        if(alu.existeDni(dni)){
+            JOptionPane.showMessageDialog(null, "El DNI ya se encuentra asociado a un alumno");
+            
+        }else{
         alu.guardarAlumno(alumno);
+        limpiarPlanilla();
+      }
       }catch (NumberFormatException ex){
           JOptionPane.showMessageDialog(null, "El Dni debe contener solo numero");
       }

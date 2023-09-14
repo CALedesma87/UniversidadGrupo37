@@ -72,10 +72,11 @@ public class AlumnoData {
     }
 
     public void eliminarAlumno(int id) {
-        
+        String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ?";
+        PreparedStatement ps = null;
         try {
-            String sql = "UPDATE alumno SET estado=0 WHERE idAlumno=?";
-            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             
@@ -179,5 +180,27 @@ public class AlumnoData {
         }
         return alumnos;
     }
+    
+    public boolean existeDni(int dni) { //metodo para verificar si exite el dni en la base de dato
+    boolean existe = false;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        String sql = "SELECT idAlumno FROM alumno WHERE dni = ? AND estado = 1";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, dni);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            existe = true; // Hay un registro con el mismo DNI y estado activo
+        }
+         ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al verificar el DNI en la base de datos: " + ex.getMessage());
+    } 
+
+    return existe;
+}
     
 }

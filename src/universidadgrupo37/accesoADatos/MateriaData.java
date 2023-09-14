@@ -43,36 +43,36 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla materia");
         }}
 
-//    public Materia buscarMateria(int id){
-//        Materia materia = null;
-//        
-//        String sql = "SELECT `idMateria`, `nombre`, `año`, `estado` FROM `materia` WHERE idMateria = ? AND estado = 1";
-//        PreparedStatement ps = null;
-//
-//        try {
-//            
-//            ps = con.prepareStatement(sql);
-//            ps.setInt(1, id);
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                materia = new Materia();
-//                materia.setIdMateria(rs.getInt("idMateria"));
-//                materia.setNombre(rs.getString("nombre"));
-//                materia.setAnioMateria(rs.getInt("año"));
-//                materia.setActivo(true);
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No existe una materia con ese ID");
-//                ps.close();
-//            }
-//
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a tabla materia.");
-//        }
-//        return materia;
-//        
-//    }
+    public Materia buscarMateria(int id){
+        Materia materia = null;
+        
+        String sql = "SELECT `idMateria`, `nombre`, `año`, `estado` FROM `materia` WHERE idMateria = ? AND estado = 1";
+        PreparedStatement ps = null;
+
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe una materia con ese ID");
+                ps.close();
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla materia.");
+        }
+        return materia;
+        
+    }
 
     public void modificarMateria(Materia materia){
      String sql="UPDATE materia SET nombre=?,anioMateria=?,estado=? WHERE idMatria=? ";
@@ -122,4 +122,26 @@ public class MateriaData {
  
       return materias;
     }
+    
+     public boolean existeMateria(int idMat) { //metodo para verificar si exite Id de materia
+    boolean existe = false;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        String sql = "SELECT idMateria FROM materia WHERE IdMateria = ? AND estado = 1";
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idMat);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            existe = true; // Hay un registro con el mismo idMateria y estado activo
+        }
+         ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al verificar el Id de la Materia en la base de datos: " + ex.getMessage());
+    } 
+
+    return existe;
+}
 }

@@ -33,15 +33,19 @@ public class UniversidadGrupo37 {
 //            System.out.println("-/ " +alumno.getFechaNacimiento());
 //            System.out.println("-/ " +alumno.getIdAlumno());
 
-//        AlumnoData ad = new AlumnoData();
-//        MateriaData md = new MateriaData();
-//        InscripcionData id = new InscripcionData();
-//        
-//        Alumno mish = ad.buscarAlumno(1);
-//        Materia mate = md.buscarMateria(2);
-//        Inscripcion insc = new Inscripcion(mish,mate,9);
-//        id.guardarInscripcion(insc);
-
+       AlumnoData ad = new AlumnoData();
+       MateriaData md = new MateriaData();
+        InscripcionData id = new InscripcionData();
+        
+       Alumno mish = ad.buscarAlumno(1);
+       Materia mate = md.buscarMateria(1);
+        Inscripcion insc = new Inscripcion(mish, mate, 5);
+        id.guardarInscripcion(insc);
+System.out.println("---------------------------");
+            System.out.println("-/ " + mate.getNombre());
+            System.out.println("-/ " +mate.getAnioMateria());
+            System.out.println("-/ " +mate.isActivo());
+ 
     }
 
 }
