@@ -1,6 +1,5 @@
 package universidadgrupo37;
 
-
 import java.time.LocalDate;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.accesoADatos.InscripcionData;
@@ -32,21 +31,28 @@ public class UniversidadGrupo37 {
 //            System.out.println("-/ " +alumno.getDni());
 //            System.out.println("-/ " +alumno.getFechaNacimiento());
 //            System.out.println("-/ " +alumno.getIdAlumno());
-
-       AlumnoData ad = new AlumnoData();
-       MateriaData md = new MateriaData();
+        AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
         InscripcionData id = new InscripcionData();
-        
-       Alumno mish = ad.buscarAlumno(1);
-       Materia mate = md.buscarMateria(1);
-        Inscripcion insc = new Inscripcion(mish, mate, 5);
-        id.guardarInscripcion(insc);
-System.out.println("---------------------------");
-            System.out.println("-/ " + mate.getNombre());
-            System.out.println("-/ " +mate.getAnioMateria());
-            System.out.println("-/ " +mate.isActivo());
- 
+
+//        Alumno mish = ad.buscarAlumno(1);
+//        Materia mate = md.buscarMateria(1);
+//        Inscripcion insc = new Inscripcion(mish, mate, 5);
+//        id.guardarInscripcion(insc);
+//        System.out.println("---------------------------");
+//        System.out.println("-/ " + mate.getNombre());
+//        System.out.println("-/ " + mate.getAnioMateria());
+//        System.out.println("-/ " + mate.isActivo());
+//        for(Inscripcion insc:id.obtenerInscripciones()){
+//            System.out.println("id: " + insc.getIdInscripcion());
+//            System.out.println("Apellido: "+ insc.getAlumno().getApellido());
+//            System.out.println("Materia: " + insc.getMateria().getNombre());
+//            System.out.println("---------------------");
+
+//        for(Materia materia:id.obtenerMateriasNoCursadas(3)){
+//            System.out.println("Materia: " + materia.getNombre());
+//        }
+    
     }
 
 }
-
