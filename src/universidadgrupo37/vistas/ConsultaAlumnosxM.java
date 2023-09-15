@@ -2,6 +2,7 @@
 package universidadgrupo37.vistas;
 
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo37.entidades.Materia;
 
 
 public class ConsultaAlumnosxM extends javax.swing.JInternalFrame {
@@ -121,5 +122,6 @@ private void crearCabecera(){
         tabla.addColumn("Nombre");
         jTable1.setModel(tabla);
     }
+ 
 
 }

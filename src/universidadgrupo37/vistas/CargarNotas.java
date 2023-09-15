@@ -1,15 +1,29 @@
 
 package universidadgrupo37.vistas;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo37.accesoADatos.AlumnoData;
+import universidadgrupo37.accesoADatos.InscripcionData;
+import universidadgrupo37.entidades.Alumno;
+import universidadgrupo37.entidades.Inscripcion;
 
 
 public class CargarNotas extends javax.swing.JInternalFrame {
-private DefaultTableModel tabla= new DefaultTableModel();
+private DefaultTableModel tabla= new DefaultTableModel(){
+  public boolean isCellEditable(int fila,int columna){
+      if(columna ==2){
+          return true;
+      }else{
+          return false;
+      }   
+  }
+};
 
     public CargarNotas() {
         initComponents();
         setTitle("Carga de notas");
+        cargarComboBox();
         crearCabecera();
     }
 
@@ -36,6 +50,16 @@ private DefaultTableModel tabla= new DefaultTableModel();
         jLabel2.setText("Seleccione Alumno:");
 
         jcbalumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione alumno..." }));
+        jcbalumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jcbalumnosMouseClicked(evt);
+            }
+        });
+        jcbalumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbalumnosActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,6 +82,11 @@ private DefaultTableModel tabla= new DefaultTableModel();
         });
 
         jbguardar.setText("Guardar");
+        jbguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbguardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,6 +139,19 @@ private DefaultTableModel tabla= new DefaultTableModel();
          setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
+    private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
+        // TODO add your handling code here:
+        Alumno aluselec=(Alumno) jcbalumnos.getSelectedItem();
+    }//GEN-LAST:event_jcbalumnosActionPerformed
+
+    private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
+        InscripcionData insc=new InscripcionData();
+       
+    }//GEN-LAST:event_jbguardarActionPerformed
+
+    private void jcbalumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbalumnosMouseClicked
+        // TODO add your handling code here  
+    }//GEN-LAST:event_jcbalumnosMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -128,5 +170,11 @@ private DefaultTableModel tabla= new DefaultTableModel();
         tabla.addColumn("Nota");
         jTable1.setModel(tabla);
     }
-
+    private void cargarComboBox(){
+        AlumnoData alu=new AlumnoData();
+        for(int i=0;alu.listarAlumnos().size()>i;i++){
+          jcbalumnos.addItem(alu.listarAlumnos().get(i)+"");
+        } 
+    } 
+    
 }

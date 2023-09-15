@@ -6,6 +6,7 @@
 package universidadgrupo37.vistas;
 
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo37.accesoADatos.AlumnoData;
 
 /**
  *
@@ -17,6 +18,7 @@ private DefaultTableModel tabla= new DefaultTableModel();
     public FormularioInsc() {
         initComponents();
         setTitle("Formulario de Inscripcion");
+        cargarComboBox();
         crearCabecera();
     }
 
@@ -81,8 +83,18 @@ private DefaultTableModel tabla= new DefaultTableModel();
         });
 
         jbanularinscipcion.setText("Anular Inscripcion");
+        jbanularinscipcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbanularinscipcionActionPerformed(evt);
+            }
+        });
 
         jbinscribir.setText("Inscribir");
+        jbinscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbinscribirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,6 +177,14 @@ private DefaultTableModel tabla= new DefaultTableModel();
         setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
+    private void jbinscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbinscribirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbinscribirActionPerformed
+
+    private void jbanularinscipcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbanularinscipcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbanularinscipcionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -188,4 +208,10 @@ private DefaultTableModel tabla= new DefaultTableModel();
         tabla.addColumn("Año");
         jTable1.setModel(tabla);
     }
+  private void cargarComboBox(){
+        AlumnoData alu=new AlumnoData();
+        for(int i=0;alu.listarAlumnos().size()>i;i++){
+          jcbalumnos.addItem(alu.listarAlumnos().get(i)+"");
+        } 
+  }
 }
