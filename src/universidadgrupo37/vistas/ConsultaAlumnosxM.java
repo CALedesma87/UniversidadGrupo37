@@ -1,16 +1,25 @@
 
 package universidadgrupo37.vistas;
 
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import universidadgrupo37.accesoADatos.InscripcionData;
+import universidadgrupo37.accesoADatos.MateriaData;
+import universidadgrupo37.entidades.Alumno;
+import universidadgrupo37.entidades.Inscripcion;
 import universidadgrupo37.entidades.Materia;
 
 
 public class ConsultaAlumnosxM extends javax.swing.JInternalFrame {
 private DefaultTableModel tabla= new DefaultTableModel();
- 
+private MateriaData materiaData;
+private InscripcionData inscripcionData; 
+
     public ConsultaAlumnosxM() {
         initComponents();
         setTitle("Listado de alumnos por Materias");
+        cargarComboBox();
         crearCabecera();
     }
 
@@ -34,6 +43,11 @@ private DefaultTableModel tabla= new DefaultTableModel();
         jLabel2.setText("Seleccione una materia:  ");
 
         jcbmaterias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione materia..." }));
+        jcbmaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbmateriasActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,6 +119,23 @@ private DefaultTableModel tabla= new DefaultTableModel();
         setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
+    private void jcbmateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbmateriasActionPerformed
+      // Obtener la materia seleccionada
+    String materiaSeleccionada = (String) jcbmaterias.getSelectedItem();
+    
+
+//    if (!"Seleccione materia...".equals(materiaSeleccionada)) {
+//        // Obtener la lista de alumnos inscritos en la materia seleccionada
+//        List<Alumno> alumnosInscritos = inscripcionData.obtenerAlumnosPorMateria();
+//
+//        // Llenar la tabla con los alumnos inscritos en la materia
+//        llenarTabla(alumnosInscritos);
+//    }
+        //Me falta pasar el id de la materia seleccionada.... 
+        //no se si tengo que hacer otro metodo que me devuelva el id de la materia 
+        //o como sacar ese valor desde el ComboBox
+    }//GEN-LAST:event_jcbmateriasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -122,6 +153,21 @@ private void crearCabecera(){
         tabla.addColumn("Nombre");
         jTable1.setModel(tabla);
     }
+ private void cargarComboBox(){
+        MateriaData mat =new MateriaData();
+        for(int i=0;mat.listarMaterias().size()>i;i++){
+          jcbmaterias.addItem(mat.listarMaterias().get(i)+"");
+        } 
+    } 
  
+private void llenarTabla(List<Alumno> alumnosInscritos) {
+        // Limpiar la tabla
+        tabla.setRowCount(0);
+
+        // Llenar la tabla con los datos de los alumnos inscritos en la materia
+        for (Alumno alumno : alumnosInscritos) {
+            tabla.addRow(new Object[]{alumno.getIdAlumno(),alumno.getDni(), alumno.getApellido(), alumno.getNombre()});
+        }
+    }
 
 }

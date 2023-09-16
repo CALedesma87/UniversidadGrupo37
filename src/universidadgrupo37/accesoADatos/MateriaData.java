@@ -106,14 +106,21 @@ public class MateriaData {
         }
     }
 
-    public List<Materia> listarMaterias(int id){
+    public List<Materia> listarMaterias(){ //Borre parametro de int id
         List <Materia> materias = new ArrayList<Materia>();
-        String sql = "SELECT * FROM materia WHERE activo = 1";
+        String sql = "SELECT * FROM materia WHERE estado = 1";
+       
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 Materia materia=new Materia();
+                //Agregue esta parte
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(rs.getBoolean("estado"));
+                materias.add(materia);
                
             }
         } catch (SQLException ex) {
