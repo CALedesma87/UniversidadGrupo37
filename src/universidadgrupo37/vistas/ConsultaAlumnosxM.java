@@ -120,20 +120,35 @@ private InscripcionData inscripcionData;
     }//GEN-LAST:event_jbsalirActionPerformed
 
     private void jcbmateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbmateriasActionPerformed
-      // Obtener la materia seleccionada
+
+     //instanciamos las clase que vamos a utilizar...
+      materiaData = new MateriaData(); 
+      inscripcionData = new InscripcionData();
+
+// Obtener la materia seleccionada desde el comboBox
     String materiaSeleccionada = (String) jcbmaterias.getSelectedItem();
     
+    // Dividir la cadena en función de la coma y tomar la primera parte
+    String[] partes = materiaSeleccionada.split(",");
+    if (partes.length > 0) {
+        
+// Usar trim() para eliminar espacios en blanco alrededor del nombre
+        String materia = partes[0].trim(); 
+        
+     // obtenemos el idMateria seleccionada buscandola por el nombre   
+        int matselec = materiaData.idMateria(materia);
+        
+    //Luego hasta que no selecciona una materia no hago nada
+    if (!"Seleccione materia...".equals(materiaSeleccionada)) {
+    
+        
+        // Obtener la lista de alumnos inscritos en la materia seleccionada
+        List<Alumno> alumnosInscritos = inscripcionData.obtenerAlumnosPorMateria(matselec);
 
-//    if (!"Seleccione materia...".equals(materiaSeleccionada)) {
-//        // Obtener la lista de alumnos inscritos en la materia seleccionada
-//        List<Alumno> alumnosInscritos = inscripcionData.obtenerAlumnosPorMateria();
-//
-//        // Llenar la tabla con los alumnos inscritos en la materia
-//        llenarTabla(alumnosInscritos);
-//    }
-        //Me falta pasar el id de la materia seleccionada.... 
-        //no se si tengo que hacer otro metodo que me devuelva el id de la materia 
-        //o como sacar ese valor desde el ComboBox
+        // Llenar la tabla con los alumnos inscritos en la materia
+        llenarTabla(alumnosInscritos);
+    }
+    } 
     }//GEN-LAST:event_jcbmateriasActionPerformed
 
 

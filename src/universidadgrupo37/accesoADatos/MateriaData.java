@@ -151,4 +151,25 @@ public class MateriaData {
 
     return existe;
 }
+     public int idMateria (String materia){
+     String sql = "SELECT idMateria FROM materia WHERE nombre = ?";
+     PreparedStatement ps = null;
+     ResultSet rs = null;
+     int idmat = 0;
+
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, materia);
+            rs = ps.executeQuery();
+                if(rs.next()){
+               idmat = rs.getInt("idMateria");
+                }
+            ps.close();
+        
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error");
+        }
+        return idmat;
+     }
 }
