@@ -45,9 +45,9 @@
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jcbalumnos" min="-2" pref="188" max="-2" attributes="0"/>
+                          <Component id="selecAlumno" min="-2" pref="188" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jrbnoinscriptas" min="-2" max="-2" attributes="0"/>
+                              <Component id="matNoInscriptas" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -60,9 +60,9 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jbinscribir" min="-2" max="-2" attributes="0"/>
+                      <Component id="Inscribir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="jbanularinscipcion" min="-2" max="-2" attributes="0"/>
+                      <Component id="anularInscripcion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="jbsalir" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -80,7 +80,7 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcbalumnos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selecAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -90,7 +90,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jrbnoinscriptas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="matNoInscriptas" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -98,8 +98,8 @@
               <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbsalir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbanularinscipcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbinscribir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anularInscripcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Inscribir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -120,7 +120,7 @@
         <Property name="text" type="java.lang.String" value="Selecione un Alumno:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jcbalumnos">
+    <Component class="javax.swing.JComboBox" name="selecAlumno">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -129,7 +129,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbalumnosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selecAlumnoActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -155,7 +155,7 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrbinscriptas">
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jrbnoinscriptas">
+    <Component class="javax.swing.JRadioButton" name="matNoInscriptas">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -186,20 +186,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbsalirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbanularinscipcion">
+    <Component class="javax.swing.JButton" name="anularInscripcion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anular Inscripcion"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbanularinscipcionActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anularInscripcionActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbinscribir">
+    <Component class="javax.swing.JButton" name="Inscribir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inscribir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbinscribirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InscribirActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

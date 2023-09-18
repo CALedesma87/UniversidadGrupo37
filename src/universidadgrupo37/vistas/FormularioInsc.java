@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package universidadgrupo37.vistas;
 
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo37.accesoADatos.AlumnoData;
 
-/**
- *
- * @author Usuario
- */
 public class FormularioInsc extends javax.swing.JInternalFrame {
 private DefaultTableModel tabla= new DefaultTableModel();
    
@@ -29,17 +21,17 @@ private DefaultTableModel tabla= new DefaultTableModel();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcbalumnos = new javax.swing.JComboBox<>();
+        selecAlumno = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jrbinscriptas = new javax.swing.JRadioButton();
-        jrbnoinscriptas = new javax.swing.JRadioButton();
+        matNoInscriptas = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jbsalir = new javax.swing.JButton();
-        jbanularinscipcion = new javax.swing.JButton();
-        jbinscribir = new javax.swing.JButton();
+        anularInscripcion = new javax.swing.JButton();
+        Inscribir = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -48,10 +40,10 @@ private DefaultTableModel tabla= new DefaultTableModel();
 
         jLabel2.setText("Selecione un Alumno:");
 
-        jcbalumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Alumno..." }));
-        jcbalumnos.addActionListener(new java.awt.event.ActionListener() {
+        selecAlumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Alumno..." }));
+        selecAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbalumnosActionPerformed(evt);
+                selecAlumnoActionPerformed(evt);
             }
         });
 
@@ -82,17 +74,17 @@ private DefaultTableModel tabla= new DefaultTableModel();
             }
         });
 
-        jbanularinscipcion.setText("Anular Inscripcion");
-        jbanularinscipcion.addActionListener(new java.awt.event.ActionListener() {
+        anularInscripcion.setText("Anular Inscripcion");
+        anularInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbanularinscipcionActionPerformed(evt);
+                anularInscripcionActionPerformed(evt);
             }
         });
 
-        jbinscribir.setText("Inscribir");
-        jbinscribir.addActionListener(new java.awt.event.ActionListener() {
+        Inscribir.setText("Inscribir");
+        Inscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbinscribirActionPerformed(evt);
+                InscribirActionPerformed(evt);
             }
         });
 
@@ -119,9 +111,9 @@ private DefaultTableModel tabla= new DefaultTableModel();
                             .addComponent(jLabel2))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(selecAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jrbnoinscriptas)
+                                .addComponent(matNoInscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)))))
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -129,9 +121,9 @@ private DefaultTableModel tabla= new DefaultTableModel();
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbinscribir)
+                        .addComponent(Inscribir)
                         .addGap(43, 43, 43)
-                        .addComponent(jbanularinscipcion)
+                        .addComponent(anularInscripcion)
                         .addGap(63, 63, 63)
                         .addComponent(jbsalir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -145,7 +137,7 @@ private DefaultTableModel tabla= new DefaultTableModel();
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selecAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -154,39 +146,41 @@ private DefaultTableModel tabla= new DefaultTableModel();
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jrbnoinscriptas)))
+                        .addComponent(matNoInscriptas)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
-                    .addComponent(jbanularinscipcion)
-                    .addComponent(jbinscribir))
+                    .addComponent(anularInscripcion)
+                    .addComponent(Inscribir))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
+    private void selecAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecAlumnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbalumnosActionPerformed
+    }//GEN-LAST:event_selecAlumnoActionPerformed
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
         // TODO add your handling code here:
         setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
-    private void jbinscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbinscribirActionPerformed
+    private void InscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InscribirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbinscribirActionPerformed
+    }//GEN-LAST:event_InscribirActionPerformed
 
-    private void jbanularinscipcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbanularinscipcionActionPerformed
+    private void anularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularInscripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbanularinscipcionActionPerformed
+    }//GEN-LAST:event_anularInscripcionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Inscribir;
+    private javax.swing.JButton anularInscripcion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -194,12 +188,10 @@ private DefaultTableModel tabla= new DefaultTableModel();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton jbanularinscipcion;
-    private javax.swing.JButton jbinscribir;
     private javax.swing.JButton jbsalir;
-    private javax.swing.JComboBox<String> jcbalumnos;
     private javax.swing.JRadioButton jrbinscriptas;
-    private javax.swing.JRadioButton jrbnoinscriptas;
+    private javax.swing.JRadioButton matNoInscriptas;
+    private javax.swing.JComboBox<String> selecAlumno;
     // End of variables declaration//GEN-END:variables
 
  private void crearCabecera(){
@@ -211,7 +203,7 @@ private DefaultTableModel tabla= new DefaultTableModel();
   private void cargarComboBox(){
         AlumnoData alu=new AlumnoData();
         for(int i=0;alu.listarAlumnos().size()>i;i++){
-          jcbalumnos.addItem(alu.listarAlumnos().get(i)+"");
+          selecAlumno.addItem(alu.listarAlumnos().get(i)+"");
         } 
   }
 }
