@@ -1,12 +1,15 @@
 
 package universidadgrupo37.vistas;
 
+import java.awt.EventQueue;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.accesoADatos.InscripcionData;
 import universidadgrupo37.entidades.Alumno;
 import universidadgrupo37.entidades.Inscripcion;
+import universidadgrupo37.entidades.Materia;
 
 
 public class CargarNotas extends javax.swing.JInternalFrame {
@@ -141,16 +144,38 @@ private DefaultTableModel tabla= new DefaultTableModel(){
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
-        Alumno aluselec=(Alumno) jcbalumnos.getSelectedItem();
+       Alumno aluselec = (Alumno) jcbalumnos.getSelectedItem();
+   Alumno alu= new Alumno();
+    InscripcionData insc= new InscripcionData();
+    //insc.obtenerMateriasCursadas(aluselec.getIdAlumno());
+    int alumnoselec= alu.getIdAlumno();
+    if (!"Seleccione alumno...".equals(aluselec)){
+        List<Materia> obtenerMateriaCursada=insc.obtenerMateriasCursadas(alumnoselec);
+        cargarTabla(obtenerMateriaCursada);
+    }   
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-        InscripcionData insc=new InscripcionData();
+       Alumno aluselec = (Alumno) jcbalumnos.getSelectedItem();
+       InscripcionData insc=new InscripcionData();
+       Alumno alu= new Alumno();
+       int alumnoselec= alu.getIdAlumno();
+       //extraer el idMateria de la tabla seleccionada
+       int materia=Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(),0).toString());
+      try{
+       //obtener la nota ingresada
+       int nota=Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(),2).toString());
+       //llamar al metodo para guardar la nota
+       insc.actualizarNota(alumnoselec, materia, nota);
+      }catch(NumberFormatException ex){
+          JOptionPane.showMessageDialog(null, "Ingrese solo números");
+      }
        
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jcbalumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbalumnosMouseClicked
-        // TODO add your handling code here  
+    // TODO add your handling code here:
+    
     }//GEN-LAST:event_jcbalumnosMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -175,6 +200,13 @@ private DefaultTableModel tabla= new DefaultTableModel(){
         for(int i=0;alu.listarAlumnos().size()>i;i++){
           jcbalumnos.addItem(alu.listarAlumnos().get(i)+"");
         } 
-    } 
+    }
+    private void cargarTabla(List<Materia> obtenerMateriaCursada){
+         //Materia materia=new Materia();
+         Inscripcion inscr= new Inscripcion();
+        for(Materia materia:obtenerMateriaCursada){
+            tabla.addRow(new Object[] {materia.getIdMateria(),materia.getNombre(),inscr.getNota()});
+        }
+    }
     
 }
