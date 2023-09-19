@@ -1,4 +1,3 @@
-
 package universidadgrupo37.vistas;
 
 import java.awt.EventQueue;
@@ -11,17 +10,17 @@ import universidadgrupo37.entidades.Alumno;
 import universidadgrupo37.entidades.Inscripcion;
 import universidadgrupo37.entidades.Materia;
 
-
 public class CargarNotas extends javax.swing.JInternalFrame {
-private DefaultTableModel tabla= new DefaultTableModel(){
-  public boolean isCellEditable(int fila,int columna){
-      if(columna ==2){
-          return true;
-      }else{
-          return false;
-      }   
-  }
-};
+
+    private DefaultTableModel tabla = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int columna) {
+            if (columna == 2) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
 
     public CargarNotas() {
         initComponents();
@@ -30,7 +29,6 @@ private DefaultTableModel tabla= new DefaultTableModel(){
         crearCabecera();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -139,43 +137,69 @@ private DefaultTableModel tabla= new DefaultTableModel(){
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
         // TODO add your handling code here:
-         setVisible(false);  //Cerrar ventana
+        setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
-       Alumno aluselec = (Alumno) jcbalumnos.getSelectedItem();
-   Alumno alu= new Alumno();
-    InscripcionData insc= new InscripcionData();
-    //insc.obtenerMateriasCursadas(aluselec.getIdAlumno());
-    int alumnoselec= alu.getIdAlumno();
-    if (!"Seleccione alumno...".equals(aluselec)){
-        List<Materia> obtenerMateriaCursada=insc.obtenerMateriasCursadas(alumnoselec);
-        cargarTabla(obtenerMateriaCursada);
-    }   
+        String aluselec = (String) jcbalumnos.getSelectedItem();
+        AlumnoData alu = new AlumnoData();
+        InscripcionData insc = new InscripcionData();
+        //insc.obtenerMateriasCursadas(aluselec.getIdAlumno());
+        String[] partes = aluselec.split("-");
+        int alselec = 0;
+        if (partes.length > 0) {
+            // Usar trim() para eliminar espacios en blanco alrededor del dni
+            int alumno = Integer.parseInt(partes[0].trim());
+            //JOptionPane.showMessageDialog(null, alumno);
+            // obtenemos el idMateria seleccionada buscandola por el nombre   
+            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
+            //JOptionPane.showMessageDialog(null, alselec);
+        }
+        if (!"Seleccione alumno...".equals(aluselec)) {
+            List<Materia> obtenerMateriaCursada = insc.obtenerMateriasCursadas(alselec);
+            cargarTabla(obtenerMateriaCursada);
+        }
+
+
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-       Alumno aluselec = (Alumno) jcbalumnos.getSelectedItem();
-       InscripcionData insc=new InscripcionData();
-       Alumno alu= new Alumno();
-       int alumnoselec= alu.getIdAlumno();
-       //extraer el idMateria de la tabla seleccionada
-       int materia=Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(),0).toString());
-      try{
-       //obtener la nota ingresada
-       int nota=Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(),2).toString());
-       //llamar al metodo para guardar la nota
-       insc.actualizarNota(alumnoselec, materia, nota);
-      }catch(NumberFormatException ex){
-          JOptionPane.showMessageDialog(null, "Ingrese solo números");
-      }
-       
+        String aluselec = (String) jcbalumnos.getSelectedItem();
+        InscripcionData insc = new InscripcionData();
+        AlumnoData alu = new AlumnoData();
+        String[] partes = aluselec.split("-");
+        int alselec = 0;
+        if (partes.length > 0) {
+            // Usar trim() para eliminar espacios en blanco alrededor del dni
+            int alumno = Integer.parseInt(partes[0].trim());
+            //JOptionPane.showMessageDialog(null, alumno);
+            // obtenemos el idMateria seleccionada buscandola por el nombre   
+            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
+            //JOptionPane.showMessageDialog(null, alselec);
+        }
+
+        //extraer el idMateria de la tabla en la fila seleccionada columna 0
+        int materia = Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        //obtener la nota ingresada en la fila seleccionada columna 2
+        double nota = Double.parseDouble(tabla.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        //asegurarnos que seleccione una fila
+        try {
+            if (jTable1.getSelectedRow() != -1) {
+                //llamar al metodo para guardar la nota
+                insc.actualizarNota(alselec, materia, nota);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Ingrese solo números");
+        }
+
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jcbalumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jcbalumnosMouseClicked
-    // TODO add your handling code here:
-    
+        // TODO add your handling code here:
+
     }//GEN-LAST:event_jcbalumnosMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -189,24 +213,26 @@ private DefaultTableModel tabla= new DefaultTableModel(){
     private javax.swing.JComboBox<String> jcbalumnos;
     // End of variables declaration//GEN-END:variables
 
-    private void crearCabecera(){
+    private void crearCabecera() {
         tabla.addColumn("Codigo");
         tabla.addColumn("Nombre");
         tabla.addColumn("Nota");
         jTable1.setModel(tabla);
     }
-    private void cargarComboBox(){
-        AlumnoData alu=new AlumnoData();
-        for(int i=0;alu.listarAlumnos().size()>i;i++){
-          jcbalumnos.addItem(alu.listarAlumnos().get(i)+"");
-        } 
-    }
-    private void cargarTabla(List<Materia> obtenerMateriaCursada){
-         //Materia materia=new Materia();
-         Inscripcion inscr= new Inscripcion();
-        for(Materia materia:obtenerMateriaCursada){
-            tabla.addRow(new Object[] {materia.getIdMateria(),materia.getNombre(),inscr.getNota()});
+
+    private void cargarComboBox() {
+        AlumnoData alu = new AlumnoData();
+        for (int i = 0; alu.listarAlumnos().size() > i; i++) {
+            jcbalumnos.addItem(alu.listarAlumnos().get(i) + "");
         }
     }
-    
+
+    private void cargarTabla(List<Materia> obtenerMateriaCursada) {
+         tabla.setRowCount(0);
+        Inscripcion inscr = new Inscripcion();
+        for (Materia materia : obtenerMateriaCursada) {
+            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), ""});
+        }
+    }
+
 }
