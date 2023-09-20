@@ -151,6 +151,7 @@ public class MateriaData {
 
     return existe;
 }
+     
      public int idMateria (String materia){
      String sql = "SELECT idMateria FROM materia WHERE nombre = ?";
      PreparedStatement ps = null;

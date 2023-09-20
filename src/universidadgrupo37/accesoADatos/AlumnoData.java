@@ -202,5 +202,26 @@ public class AlumnoData {
 
     return existe;
 }
+
+    public int idAlumno (int dni){
+     String sql = "SELECT idAlumno FROM alumno WHERE dni = ?";
+     
+     int idmat = 0;
+
+        try {
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+               idmat = rs.getInt("idAlumno");
+                }
+            ps.close();
+        
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "Error");
+        }
+        return idmat;
+     }
     
 }
