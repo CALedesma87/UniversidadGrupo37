@@ -1,5 +1,3 @@
-//Hice un par de modificaciones y termine de agregar lo que faltaba
-//desde los videos y el pdf de la actividad.
 
 package universidadgrupo37.accesoADatos;
 
@@ -202,7 +200,7 @@ public class AlumnoData {
 
     return existe;
 }
-<<<<<<< HEAD
+
 
     public int idAlumno (int dni){
      String sql = "SELECT idAlumno FROM alumno WHERE dni = ?";
@@ -224,8 +222,6 @@ public class AlumnoData {
         }
         return idmat;
      }
-=======
-   
->>>>>>> 3b3de2b35a39958d3d3e2cfb2ccdd36a0e5cb976
+
     
 }
