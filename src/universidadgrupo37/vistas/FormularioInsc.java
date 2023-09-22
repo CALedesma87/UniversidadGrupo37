@@ -1,12 +1,15 @@
 package universidadgrupo37.vistas;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.accesoADatos.InscripcionData;
 import universidadgrupo37.accesoADatos.MateriaData;
 import universidadgrupo37.entidades.Alumno;
+import universidadgrupo37.entidades.Inscripcion;
 import universidadgrupo37.entidades.Materia;
 
 public class FormularioInsc extends javax.swing.JInternalFrame {
@@ -134,41 +137,36 @@ private AlumnoData alu = new AlumnoData();
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(152, 152, 152))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(Inscribir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(anularInscripcion)
-                .addGap(60, 60, 60)
-                .addComponent(jbsalir)
-                .addGap(64, 64, 64))
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jrbinscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4))
                             .addComponent(jLabel2))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
                                 .addComponent(matNoInscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addGap(0, 148, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(selecAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
+                                .addComponent(jLabel5))
+                            .addComponent(selecAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(58, 58, 58)
+                            .addComponent(anularInscripcion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,11 +188,12 @@ private AlumnoData alu = new AlumnoData();
                         .addComponent(matNoInscriptas)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Inscribir)
                     .addComponent(anularInscripcion)
-                    .addComponent(jbsalir)))
+                    .addComponent(jbsalir))
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -210,7 +209,50 @@ private AlumnoData alu = new AlumnoData();
     }//GEN-LAST:event_jbsalirActionPerformed
 
     private void InscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InscribirActionPerformed
-        // TODO add your handling code here:
+
+        //IMPORTANTE!:
+        //# Tuve que establecer en 0 el valor predeterminado de la nota
+        //# ya que en teoria hacemos un manejo de notas luego.
+        InscripcionData id = new InscripcionData();
+        AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
+
+        try {
+            int filaSeleccionada = jTable1.getSelectedRow();
+            String dPana = "";
+
+            if (filaSeleccionada != -1) {
+                // Crea un arreglo para almacenar los datos de la fila
+                Object[] fila = new Object[tabla.getColumnCount()];
+                // El for para llenar una fila con todos los datos
+                for (int i = 0; i < tabla.getColumnCount(); i++) {
+                    fila[i] = tabla.getValueAt(filaSeleccionada, i);
+                }
+                // le asignamos el valor a la materia:
+
+                dPana = fila[1].toString();
+
+                // le asignamos el valor al alumno:
+                String alumnoSeleccionado = (String) selecAlumno.getSelectedItem();
+                String[] partes = alumnoSeleccionado.split("-");
+                String alumno = partes[0].trim();
+                int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
+                Alumno aydiAl = ad.buscarAlumno(alumSelec);
+
+                // Este es un paso adicional que tuve que hacer para poder buscar la materia por id por conflictos de tipo (materia, STR, INT):
+                int mat = md.idMateria(dPana);
+                Materia angora = md.buscarMateria(mat);
+
+                // Asignamos todos los valores a la inscripcion:
+                Inscripcion insc = new Inscripcion(aydiAl, angora, 0);
+                id.guardarInscripcion(insc);
+            }
+
+        } catch (NullPointerException e) {
+            //Hay que agregar los otros posibles errores que contenga esto:
+            JOptionPane.showMessageDialog(null, e);
+        }
+
     }//GEN-LAST:event_InscribirActionPerformed
 
     private void anularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularInscripcionActionPerformed
