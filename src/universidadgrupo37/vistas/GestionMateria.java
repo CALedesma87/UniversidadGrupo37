@@ -48,6 +48,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jbeliminar = new javax.swing.JButton();
         jbnuevo = new javax.swing.JButton();
         jbbuscar = new javax.swing.JButton();
+        jlestado = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -61,6 +62,12 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Año:");
 
         jLabel5.setText("Estado:");
+
+        jrbestado.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jrbestadoStateChanged(evt);
+            }
+        });
 
         jbsalir.setText("Salir");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +84,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         jbeliminar.setText("Eliminar");
+        jbeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbeliminarActionPerformed(evt);
+            }
+        });
 
         jbnuevo.setText("Nuevo");
         jbnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -127,11 +139,14 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5))
                                 .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jrbestado))
                                     .addComponent(jtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jrbestado)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jlestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
@@ -154,9 +169,10 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrbestado)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jrbestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlestado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
@@ -237,6 +253,36 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         limpiarPlanilla();
     }//GEN-LAST:event_jbnuevoActionPerformed
 
+    private void jbeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarActionPerformed
+        // TODO add your handling code here:
+        MateriaData matData = new MateriaData();
+        
+        
+        try{
+            if(jtcodigo.getText().isEmpty()|| jtnombre.getText().isEmpty()||jtanio.getText().isEmpty()||!jrbestado.isSelected()){
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacio y/o el estado debe estar activo");
+            return;
+            }else{
+            int matid = Integer.parseInt(jtcodigo.getText());
+            matData.eliminarMateria(matid);
+            }
+            
+            
+        }catch(NullPointerException ex){
+        JOptionPane.showMessageDialog(null, ex);
+        }
+        
+    }//GEN-LAST:event_jbeliminarActionPerformed
+
+    private void jrbestadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrbestadoStateChanged
+        // TODO add your handling code here:
+        if(jrbestado.isSelected()){
+        jlestado.setText("Activo");
+        }else{
+        jlestado.setText("");
+        }
+    }//GEN-LAST:event_jrbestadoStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -249,6 +295,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbguardar;
     private javax.swing.JButton jbnuevo;
     private javax.swing.JButton jbsalir;
+    private javax.swing.JLabel jlestado;
     private javax.swing.JRadioButton jrbestado;
     private javax.swing.JTextField jtanio;
     private javax.swing.JTextField jtcodigo;
@@ -260,5 +307,6 @@ private void limpiarPlanilla(){
     jtnombre.setText("");
     jtanio.setText("");
     jrbestado.setSelected(false);
+    jlestado.setText("");
   }
 }

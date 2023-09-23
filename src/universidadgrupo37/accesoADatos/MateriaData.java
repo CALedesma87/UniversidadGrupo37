@@ -75,7 +75,7 @@ public class MateriaData {
     }
 
     public void modificarMateria(Materia materia){
-     String sql="UPDATE materia SET nombre=?,anioMateria=?,estado=? WHERE idMatria=? ";
+     String sql="UPDATE materia SET nombre=?,anioMateria=?,estado=? WHERE idMateria=? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, materia.getNombre());
@@ -92,7 +92,7 @@ public class MateriaData {
     }
 
     public void eliminarMateria(int id){
-    String sql="UPDATE materia SET activo=0 WHERE idMatria=? ";
+    String sql="UPDATE materia SET estado=0 WHERE idMateria=? ";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);

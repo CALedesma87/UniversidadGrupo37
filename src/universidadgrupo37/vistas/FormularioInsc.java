@@ -201,6 +201,7 @@ private AlumnoData alu = new AlumnoData();
 
     private void selecAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecAlumnoActionPerformed
         // TODO add your handling code here:
+        limpiarPlanilla();
     }//GEN-LAST:event_selecAlumnoActionPerformed
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
@@ -314,6 +315,11 @@ private AlumnoData alu = new AlumnoData();
                 String[] partes = alumnoSeleccionado.split("-");
                 
                 String alumno = partes[0].trim();
+                 //Vereficamos que seleccione un alumno antes
+                if(alumnoSeleccionado.equals("Seleccione Alumno...")){
+                    JOptionPane.showMessageDialog(null, "Debe Seleccionar una alumno");
+                    return;
+                }
                 
                 int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
                 
@@ -323,7 +329,7 @@ private AlumnoData alu = new AlumnoData();
             }
 
         } catch (NullPointerException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno..." );
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -348,16 +354,22 @@ private AlumnoData alu = new AlumnoData();
                 String[] partes = alumnoSeleccionado.split("-");
                 //Seleccionamos la parte que nos interesa
                 String alumno = partes[0].trim();
+                //Vereficamos que seleccione un alumno antes
+                if(alumnoSeleccionado.equals("Seleccione Alumno...")){
+                    JOptionPane.showMessageDialog(null, "Debe Seleccionar una alumno");
+                    return;
+                }
                 //Creamos una variable nueva para hacer conversion del String a Int
                 int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
                 //Se crea el array para pasarle los datos y crear la lista
                 List<Materia> materias_1 = id.obtenerMateriasCursadas(alumSelec);
                 //Cargamos la JTable:
                 llenarTabla(materias_1);
+            
             }
 
         } catch (NullPointerException e) {
-            System.out.println(e);
+           JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno...");
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -392,9 +404,14 @@ private AlumnoData alu = new AlumnoData();
  
   private void cargarComboBox(){
         AlumnoData alu=new AlumnoData();
-        for(int i=0;alu.listarAlumnos().size()>i;i++){
-          selecAlumno.addItem(alu.listarAlumnos().get(i)+"");
-        } 
+        List<Alumno> listaAlumno = alu.listarAlumnos();
+//        for(int i=0;alu.listarAlumnos().size()>i;i++){
+//          selecAlumno.addItem(alu.listarAlumnos().get(i)+"");
+//        } 
+for (Alumno alumno : listaAlumno) {
+        selecAlumno.addItem(alumno.getDni()+" - "+ alumno.getApellido() + ", " + alumno.getNombre());
+    }
+
   }
   
   private void llenarTabla(List<Materia> materiasInscriptas) {
@@ -406,5 +423,13 @@ private AlumnoData alu = new AlumnoData();
             tabla.addRow(new Object[]{mats.getIdMateria(), mats.getNombre(), mats.getAnioMateria()});
         }
     }
+  private void limpiarPlanilla(){
+  //setea a 0 planilla excepto el combobox
+      
+  DefaultTableModel modeloLimpio = (DefaultTableModel) jTable1.getModel();
+    modeloLimpio.setRowCount(0);
+    matNoInscriptas.setSelected(false);
+    jrbinscriptas.setSelected(false);
+  }
   
 }
