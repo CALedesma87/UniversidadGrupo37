@@ -67,12 +67,14 @@ private AlumnoData alu = new AlumnoData();
 
         jLabel5.setText("Materias no Inscriptas");
 
+        jrbinscriptas.setToolTipText("*Muestra la lista de materias inscriptas del alumno seleccionado");
         jrbinscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbinscriptasActionPerformed(evt);
             }
         });
 
+        matNoInscriptas.setToolTipText("*Muestra la lista de materias no inscriptas del alumno seleccionado");
         matNoInscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 matNoInscriptasActionPerformed(evt);
@@ -109,6 +111,7 @@ private AlumnoData alu = new AlumnoData();
         jScrollPane1.setViewportView(jTable1);
 
         jbsalir.setText("Salir");
+        jbsalir.setToolTipText("*Cierra esta ventana");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbsalirActionPerformed(evt);
@@ -116,6 +119,7 @@ private AlumnoData alu = new AlumnoData();
         });
 
         anularInscripcion.setText("Anular Inscripcion");
+        anularInscripcion.setToolTipText("*Anula la inscripcion a la materia seleccionada");
         anularInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anularInscripcionActionPerformed(evt);
@@ -123,6 +127,7 @@ private AlumnoData alu = new AlumnoData();
         });
 
         Inscribir.setText("Inscribir");
+        Inscribir.setToolTipText("*Inscribe al alumno en la materia seleccionada");
         Inscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InscribirActionPerformed(evt);

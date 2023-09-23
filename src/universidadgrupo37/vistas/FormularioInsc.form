@@ -151,11 +151,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrbinscriptas">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Muestra la lista de materias inscriptas del alumno seleccionado"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbinscriptasActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="matNoInscriptas">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Muestra la lista de materias no inscriptas del alumno seleccionado"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="matNoInscriptasActionPerformed"/>
       </Events>
@@ -208,6 +214,7 @@
     <Component class="javax.swing.JButton" name="jbsalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Cierra esta ventana"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbsalirActionPerformed"/>
@@ -216,6 +223,7 @@
     <Component class="javax.swing.JButton" name="anularInscripcion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anular Inscripcion"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Anula la inscripcion a la materia seleccionada"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anularInscripcionActionPerformed"/>
@@ -224,6 +232,7 @@
     <Component class="javax.swing.JButton" name="Inscribir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Inscribir"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Inscribe al alumno en la materia seleccionada"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InscribirActionPerformed"/>

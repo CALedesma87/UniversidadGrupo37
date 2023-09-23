@@ -5,6 +5,7 @@
  */
 package universidadgrupo37.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import universidadgrupo37.accesoADatos.MateriaData;
@@ -42,12 +43,13 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jtcodigo = new javax.swing.JTextField();
         jtnombre = new javax.swing.JTextField();
         jtanio = new javax.swing.JTextField();
-        jrbestado = new javax.swing.JRadioButton();
+        rbEstado = new javax.swing.JRadioButton();
         jbsalir = new javax.swing.JButton();
         jbguardar = new javax.swing.JButton();
         jbeliminar = new javax.swing.JButton();
         jbnuevo = new javax.swing.JButton();
         jbbuscar = new javax.swing.JButton();
+        EstadoText = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -61,6 +63,19 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Año:");
 
         jLabel5.setText("Estado:");
+
+        jtcodigo.setToolTipText("*Ingrese el ID de la Materia");
+
+        jtnombre.setToolTipText("*Ingrese el nombre de la Materia");
+
+        jtanio.setToolTipText("*Ingrese el año de la Materia (Solo números)");
+
+        rbEstado.setToolTipText("*Seleccione para Activo / Inactivo");
+        rbEstado.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbEstadoStateChanged(evt);
+            }
+        });
 
         jbsalir.setText("Salir");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +101,14 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         });
 
         jbbuscar.setText("Buscar");
+        jbbuscar.setToolTipText("*Busqueda por ID de la Materia");
         jbbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbbuscarActionPerformed(evt);
             }
         });
+
+        EstadoText.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +147,9 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jrbestado))
+                                        .addComponent(rbEstado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(EstadoText, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -154,9 +174,10 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jtanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrbestado)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rbEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EstadoText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
@@ -181,7 +202,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         //int codigo = Integer.parseInt(jtcodigo.getText());
         String nombre = jtnombre.getText();
         int anio = Integer.parseInt(jtanio.getText());
-        boolean estado = jrbestado.isSelected();
+        boolean estado = rbEstado.isSelected();
         
         if (nombre.isEmpty() || jtanio.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Complete el campo nombre y año por favor.");
@@ -218,7 +239,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
             Materia mat1 = mat.buscarMateria(idmat);
             jtnombre.setText(mat1.getNombre()); 
             jtanio.setText(String.valueOf(mat1.getAnioMateria()));//convierte el int en String para poder setearlo en el TextField
-            jrbestado.setSelected(mat1.isActivo());
+            rbEstado.setSelected(mat1.isActivo());
           
             
         }
@@ -237,8 +258,20 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         limpiarPlanilla();
     }//GEN-LAST:event_jbnuevoActionPerformed
 
+    private void rbEstadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbEstadoStateChanged
+        // TODO add your handling code here:
+        if(rbEstado.isSelected()){
+            EstadoText.setForeground(Color.BLUE);
+            EstadoText.setText("Activo");
+        }else{
+            EstadoText.setForeground(Color.red);
+            EstadoText.setText("Inactivo");
+        }
+    }//GEN-LAST:event_rbEstadoStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel EstadoText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -249,16 +282,16 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbguardar;
     private javax.swing.JButton jbnuevo;
     private javax.swing.JButton jbsalir;
-    private javax.swing.JRadioButton jrbestado;
     private javax.swing.JTextField jtanio;
     private javax.swing.JTextField jtcodigo;
     private javax.swing.JTextField jtnombre;
+    private javax.swing.JRadioButton rbEstado;
     // End of variables declaration//GEN-END:variables
 
 private void limpiarPlanilla(){
    jtcodigo.setText(""); // Limpia los campos
     jtnombre.setText("");
     jtanio.setText("");
-    jrbestado.setSelected(false);
+    rbEstado.setSelected(false);
   }
 }

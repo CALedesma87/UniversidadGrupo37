@@ -76,6 +76,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTabla);
 
         jbsalir.setText("Salir");
+        jbsalir.setToolTipText("*Abandona esta ventana");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbsalirActionPerformed(evt);
@@ -83,6 +84,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         });
 
         jbguardar.setText("Guardar");
+        jbguardar.setToolTipText("*Guarda las notas de la materia seleccionada");
         jbguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbguardarActionPerformed(evt);

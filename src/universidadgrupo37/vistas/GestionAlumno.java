@@ -1,6 +1,7 @@
 
 package universidadgrupo37.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         jbbuscar = new javax.swing.JButton();
         jtapellido = new javax.swing.JTextField();
         jdcfnac = new com.toedter.calendar.JDateChooser();
+        Estado = new javax.swing.JLabel();
 
         jButton3.setText("Guardar");
 
@@ -58,6 +60,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         jLabel6.setText("Fecha Nacimiento:");
 
         jbsalir.setText("Salir");
+        jbsalir.setToolTipText("*Abandona ventana Alumno");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbsalirActionPerformed(evt);
@@ -65,6 +68,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         });
 
         jbeliminar.setText("Eliminar");
+        jbeliminar.setToolTipText("*Elimina a un alumno");
         jbeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbeliminarActionPerformed(evt);
@@ -72,6 +76,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         });
 
         jbnuevo.setText("Nuevo");
+        jbnuevo.setToolTipText("*Limpia todos los campos de texto");
         jbnuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbnuevoActionPerformed(evt);
@@ -79,18 +84,38 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         });
 
         jbguardar.setText("Guardar");
+        jbguardar.setToolTipText("*Guarda los datos del alumno");
         jbguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbguardarActionPerformed(evt);
             }
         });
 
+        jrbestado.setToolTipText("*Click para activo o Inactivo");
+        jrbestado.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jrbestadoStateChanged(evt);
+            }
+        });
+
+        jtnombre.setToolTipText("*Nombre del alumno");
+
+        jtdni.setToolTipText("*Ingrese solo números");
+
         jbbuscar.setText("Buscar");
+        jbbuscar.setToolTipText("*Buscar por alumno por documento");
         jbbuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbbuscarActionPerformed(evt);
             }
         });
+
+        jtapellido.setToolTipText("*Apellido del alumno");
+
+        jdcfnac.setToolTipText("");
+
+        Estado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Estado.setForeground(new java.awt.Color(0, 0, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,7 +149,10 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbestado)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jrbestado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtdni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
@@ -155,9 +183,11 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(jtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jrbestado))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jrbestado))
+                    .addComponent(Estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,8 +304,19 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
       }
     }//GEN-LAST:event_jbguardarActionPerformed
 
+    private void jrbestadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrbestadoStateChanged
+        // TODO add your handling code here:
+        if(jrbestado.isSelected()){
+            Estado.setForeground(Color.BLUE);
+            Estado.setText("Activo");
+        }else{
+            Estado.setForeground(Color.RED);
+            Estado.setText("Inactivo");}
+    }//GEN-LAST:event_jrbestadoStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Estado;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

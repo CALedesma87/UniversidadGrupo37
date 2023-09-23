@@ -4,10 +4,7 @@
  */
 package universidadgrupo37.vistas;
 
-/**
- *
- * @author verena
- */
+
 public class Instrucciones extends javax.swing.JInternalFrame {
 
     /**
@@ -15,6 +12,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
      */
     public Instrucciones() {
         initComponents();
+        
     }
 
     /**
@@ -28,68 +26,61 @@ public class Instrucciones extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(0, 0, 0));
+        setBorder(new javax.swing.border.MatteBorder(null));
         setClosable(true);
         setTitle("Instrucciones");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("FreeMono", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
+        jTextArea1.setText("Alumno:\n\n-Se pueden agregar / eliminar alumnos.\n-Se pueden buscar alumnos por DNI o ID.\n\n*Para agregar alumnos, debe completar los\ncampos de 'Documento', 'Apellido', 'Nombre'\n'Estado' (Activo / Inactivo), 'Fecha de Nac.'");
+        jTextArea1.setSelectedTextColor(new java.awt.Color(255, 255, 0));
+        jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Alumno");
+        jTextArea1.getAccessibleContext().setAccessibleParent(null);
 
         jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("FreeMono", 0, 14)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
-        jTextArea2.setText("En gestion de materia\nse puede:\n-Anular inscripciones\n-Inscribir alumnos\n-Crear materias\n\nTambien se pueden visualizar todas las materias\n");
+        jTextArea2.setText("Materia:\n\n-Se pueden agregar / eliminar materias.\n-Se pueden buscar materias por nombre.");
+        jTextArea2.setSelectedTextColor(new java.awt.Color(255, 255, 0));
+        jTextArea2.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(jTextArea2);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Materia");
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Administracion");
-
         jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea3.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("FreeMono", 0, 14)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea3.setRows(5);
+        jTextArea3.setText("Administracion:\n \n\\Manejo de inscripciones:\n\n-Se pueden agregar / eliminar inscripciones.\n-Se pueden listar a los alumnos por materia\ninscripta o no inscripta.\n\n\\Manipulacion de notas:\n\n-Se pueden listar las materias cursadas por\nalumno y modificar las notas.");
+        jTextArea3.setSelectedTextColor(new java.awt.Color(255, 255, 0));
+        jTextArea3.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(jTextArea3);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Consultas");
-
         jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea4.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("FreeMono", 0, 14)); // NOI18N
-        jTextArea4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jTextArea4.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea4.setRows(5);
+        jTextArea4.setText("Consultas:\n\n-Se puede listar a la cantidad de alumnos\npor materia.");
+        jTextArea4.setSelectedTextColor(new java.awt.Color(255, 255, 0));
+        jTextArea4.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane4.setViewportView(jTextArea4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,49 +88,30 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(170, 170, 170)
-                .addComponent(jLabel3)
-                .addGap(85, 85, 85))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,10 +119,6 @@ public class Instrucciones extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

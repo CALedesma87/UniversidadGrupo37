@@ -60,7 +60,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Component id="jrbestado" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbEstado" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="EstadoText" min="-2" pref="107" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jtnombre" min="-2" pref="207" max="-2" attributes="0"/>
                                   <Component id="jtanio" min="-2" pref="103" max="-2" attributes="0"/>
@@ -96,9 +98,10 @@
                   <Component id="jtanio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jrbestado" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="rbEstado" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel5" max="32767" attributes="0"/>
+                  <Component id="EstadoText" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="94" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -142,12 +145,27 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtcodigo">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Ingrese el ID de la Materia"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtnombre">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Ingrese el nombre de la Materia"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtanio">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Ingrese el a&#xf1;o de la Materia (Solo n&#xfa;meros)"/>
+      </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jrbestado">
+    <Component class="javax.swing.JRadioButton" name="rbEstado">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Seleccione para Activo / Inactivo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rbEstadoStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbsalir">
       <Properties>
@@ -181,10 +199,18 @@
     <Component class="javax.swing.JButton" name="jbbuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Busqueda por ID de la Materia"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbbuscarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="EstadoText">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
