@@ -38,7 +38,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jcbalumnos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabla = new javax.swing.JTable();
         jbsalir = new javax.swing.JButton();
         jbguardar = new javax.swing.JButton();
 
@@ -62,7 +62,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,7 +73,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTabla);
 
         jbsalir.setText("Salir");
         jbsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -106,14 +106,16 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbguardar)
-                .addGap(54, 54, 54)
-                .addComponent(jbsalir)
-                .addGap(15, 15, 15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbguardar)
+                        .addGap(54, 54, 54)
+                        .addComponent(jbsalir)
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,20 +144,11 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
+        tabla.setRowCount(0);
         String aluselec = (String) jcbalumnos.getSelectedItem();
         AlumnoData alu = new AlumnoData();
         InscripcionData insc = new InscripcionData();
-        //insc.obtenerMateriasCursadas(aluselec.getIdAlumno());
-        String[] partes = aluselec.split("-");
-        int alselec = 0;
-        if (partes.length > 0) {
-            // Usar trim() para eliminar espacios en blanco alrededor del dni
-            int alumno = Integer.parseInt(partes[0].trim());
-            //JOptionPane.showMessageDialog(null, alumno);
-            // obtenemos el idMateria seleccionada buscandola por el nombre   
-            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
-            //JOptionPane.showMessageDialog(null, alselec);
-        }
+        int alselec=idAlumno();
         if (!"Seleccione alumno...".equals(aluselec)) {
             List<Materia> obtenerMateriaCursada = insc.obtenerMateriasCursadas(alselec);
             cargarTabla(obtenerMateriaCursada);
@@ -165,7 +158,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-        String aluselec = (String) jcbalumnos.getSelectedItem();
+        
+          String aluselec = (String) jcbalumnos.getSelectedItem();
         InscripcionData insc = new InscripcionData();
         AlumnoData alu = new AlumnoData();
         String[] partes = aluselec.split("-");
@@ -179,21 +173,31 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             //JOptionPane.showMessageDialog(null, alselec);
         }
 
-        //extraer el idMateria de la tabla en la fila seleccionada columna 0
-        int materia = Integer.parseInt(tabla.getValueAt(jTable1.getSelectedRow(), 0).toString());
-        //obtener la nota ingresada en la fila seleccionada columna 2
-        double nota = Double.parseDouble(tabla.getValueAt(jTable1.getSelectedRow(), 2).toString());
-        //asegurarnos que seleccione una fila
         try {
-            if (jTable1.getSelectedRow() != -1) {
+            //extraer el idMateria de la tabla en la fila seleccionada columna 0
+            int materia = Integer.parseInt(tabla.getValueAt(jTabla.getSelectedRow(), 0).toString());
+
+            //obtener la nota ingresada en la fila seleccionada columna 2 
+            double nota = Double.parseDouble(tabla.getValueAt(jTabla.getSelectedRow(), 2).toString());
+            //cuando la celda nota esta vacia 
+            if (jTabla.getValueAt(jTabla.getSelectedRow(), 2) == null) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una nota");
+            }
+            //asegurarnos que seleccione una fila
+            if (jTabla.getSelectedRow() == -1) {
+
+                JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
+
+            } else {
                 //llamar al metodo para guardar la nota
                 insc.actualizarNota(alselec, materia, nota);
-            } else {
-                JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese solo números");
+            JOptionPane.showMessageDialog(null, "Ingrese solo números ");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
         }
+
 
     }//GEN-LAST:event_jbguardarActionPerformed
 
@@ -207,7 +211,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabla;
     private javax.swing.JButton jbguardar;
     private javax.swing.JButton jbsalir;
     private javax.swing.JComboBox<String> jcbalumnos;
@@ -217,7 +221,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         tabla.addColumn("Codigo");
         tabla.addColumn("Nombre");
         tabla.addColumn("Nota");
-        jTable1.setModel(tabla);
+        jTabla.setModel(tabla);
     }
 
     private void cargarComboBox() {
@@ -228,11 +232,31 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla(List<Materia> obtenerMateriaCursada) {
-         tabla.setRowCount(0);
-        Inscripcion inscr = new Inscripcion();
+       InscripcionData insc = new InscripcionData();
+       int alselec=idAlumno();
         for (Materia materia : obtenerMateriaCursada) {
-            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), ""});
+            int notaselec= insc.buscarNota(materia.getIdMateria(),alselec );
+            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(),notaselec });
         }
     }
+    private int idAlumno(){
+       
+          String aluselec = (String) jcbalumnos.getSelectedItem();
+        InscripcionData insc = new InscripcionData();
+        AlumnoData alu = new AlumnoData();
+        String[] partes = aluselec.split("-");
+        int alselec = 0;
+        if (partes.length > 0) {
+            // Usar trim() para eliminar espacios en blanco alrededor del dni
+            int alumno = Integer.parseInt(partes[0].trim());
+            //JOptionPane.showMessageDialog(null, alumno);
+            // obtenemos el idMateria seleccionada buscandola por el nombre   
+            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
+            //JOptionPane.showMessageDialog(null, alselec);
+        }
+        return alselec;
+    }
+    }
+    
 
-}
+

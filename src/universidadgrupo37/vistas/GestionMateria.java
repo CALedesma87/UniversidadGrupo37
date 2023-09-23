@@ -178,21 +178,21 @@ public class GestionMateria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
         // Obtener los valores de los campos
-        int codigo = Integer.parseInt(jtcodigo.getText());
+        //int codigo = Integer.parseInt(jtcodigo.getText());
         String nombre = jtnombre.getText();
         int anio = Integer.parseInt(jtanio.getText());
         boolean estado = jrbestado.isSelected();
         
-        if (jtcodigo.getText().isEmpty() || nombre.isEmpty() || jtanio.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
+        if (nombre.isEmpty() || jtanio.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete el campo nombre y año por favor.");
             return;
         }
         //creamos un constructor de Materia y de MateriaData
-        Materia materia = new Materia(codigo, nombre, anio, estado);
+        Materia materia = new Materia(nombre.toLowerCase(), anio, estado);
         MateriaData mat = new MateriaData();
         //Verificamos si exite el id previamente
-        if(mat.existeMateria(codigo)){
-            JOptionPane.showMessageDialog(null, "El Id ya se encuentra asociado a una Materia");
+        if(mat.existeMateriaN(nombre)){
+            JOptionPane.showMessageDialog(null, "La materia ya existe o esta anulada");
             
         }else{
         mat.guardarMateria(materia);
@@ -200,7 +200,7 @@ public class GestionMateria extends javax.swing.JInternalFrame {
       }
         
         }catch (NumberFormatException ex){
-          JOptionPane.showMessageDialog(null, "El Id y el Año deben contener solo numero");
+          JOptionPane.showMessageDialog(null, "El año debe contener solo números");
       }
     }//GEN-LAST:event_jbguardarActionPerformed
 

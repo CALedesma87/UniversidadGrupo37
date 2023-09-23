@@ -130,29 +130,30 @@ public class MateriaData {
       return materias;
     }
     
-     public boolean existeMateria(int idMat) { //metodo para verificar si exite Id de materia
-    boolean existe = false;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
+    public boolean existeMateria(int idMat) { //metodo para verificar si exite Id de materia
 
-    try {
-        String sql = "SELECT idMateria FROM materia WHERE IdMateria = ? AND estado = 1";
-        ps = con.prepareStatement(sql);
-        ps.setInt(1, idMat);
-        rs = ps.executeQuery();
+        boolean existe = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-        if (rs.next()) {
-            existe = true; // Hay un registro con el mismo idMateria y estado activo
+        try {
+            String sql = "SELECT idMateria FROM materia WHERE IdMateria = ? AND estado = 1";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMat);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                existe = true; // Hay un registro con el mismo idMateria y estado activo
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al verificar el Id de la Materia en la base de datos: " + ex.getMessage());
         }
-         ps.close();
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al verificar el Id de la Materia en la base de datos: " + ex.getMessage());
-    } 
 
-    return existe;
-}
+        return existe;
+    }
      
-     public int idMateria (String materia){
+    public int idMateria (String materia){
      String sql = "SELECT idMateria FROM materia WHERE nombre = ?";
      PreparedStatement ps = null;
      ResultSet rs = null;
@@ -173,4 +174,27 @@ public class MateriaData {
         }
         return idmat;
      }
+    
+    public boolean existeMateriaN(String nombre) { //metodo para verificar si exite Id de materia
+
+        boolean existe = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT nombre FROM materia WHERE nombre = ? AND estado = 1";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                existe = true; // Hay un registro con el mismo idMateria y estado activo
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al verificar el Id de la Materia en la base de datos: " + ex.getMessage());
+        }
+
+        return existe;
+    }
 }
