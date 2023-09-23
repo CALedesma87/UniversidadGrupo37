@@ -244,7 +244,7 @@ private AlumnoData alu = new AlumnoData();
                 Materia angora = md.buscarMateria(mat);
 
                 // Asignamos todos los valores a la inscripcion:
-                Inscripcion insc = new Inscripcion(aydiAl, angora, 0);
+                Inscripcion insc = new Inscripcion(aydiAl, angora, 0.0);
                 id.guardarInscripcion(insc);
             }
 
@@ -257,6 +257,44 @@ private AlumnoData alu = new AlumnoData();
 
     private void anularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anularInscripcionActionPerformed
         // TODO add your handling code here:
+        InscripcionData id = new InscripcionData();
+        AlumnoData ad = new AlumnoData();
+        MateriaData md = new MateriaData();
+
+        try {
+            int filaSeleccionada = jTable1.getSelectedRow();
+            String dPana = "";
+
+            if (filaSeleccionada != -1) {
+                // Crea un arreglo para almacenar los datos de la fila
+                Object[] fila = new Object[tabla.getColumnCount()];
+                // El for para llenar una fila con todos los datos
+                for (int i = 0; i < tabla.getColumnCount(); i++) {
+                    fila[i] = tabla.getValueAt(filaSeleccionada, i);
+                }
+                // le asignamos el valor a la materia:
+
+                dPana = fila[1].toString();
+
+                // le asignamos el valor al alumno:
+                String alumnoSeleccionado = (String) selecAlumno.getSelectedItem();
+                String[] partes = alumnoSeleccionado.split("-");
+                String alumno = partes[0].trim();
+                int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
+
+                int mat = md.idMateria(dPana);
+                
+
+                // Asignamos todos los valores a la inscripcion:
+                id.borrarInscripcionMateriaAlumno(alumSelec, mat);
+            }
+
+        } catch (NullPointerException e) {
+            //Hay que agregar los otros posibles errores que contenga esto:
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+        
     }//GEN-LAST:event_anularInscripcionActionPerformed
 
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
@@ -266,7 +304,8 @@ private AlumnoData alu = new AlumnoData();
     private void matNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matNoInscriptasActionPerformed
         //#Leer los comentarios en el codigo del siguiente JRadioButton#
         boolean estado = matNoInscriptas.isSelected();
-
+        if(estado == true){jrbinscriptas.setSelected(false);}
+        
         try {
 
             if (estado == true) {
@@ -297,6 +336,7 @@ private AlumnoData alu = new AlumnoData();
     private void jrbinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbinscriptasActionPerformed
         //Esto comprueba el estado del JRadioButton "Materias Inscriptas"
         boolean estado = jrbinscriptas.isSelected();
+        if(estado == true){matNoInscriptas.setSelected(false);}
         
         //Hay que pulir los try-catch #Hay que hacer prueba de errores (No olvidarse de usarlos)
         try {
