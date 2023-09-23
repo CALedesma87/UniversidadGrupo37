@@ -62,7 +62,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jrbestado" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jrbestado" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="Estado" min="-2" pref="86" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="jtnombre" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="jtdni" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
@@ -103,9 +107,12 @@
                   <Component id="jtnombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jrbestado" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jrbestado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="Estado" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
@@ -161,6 +168,7 @@
     <Component class="javax.swing.JButton" name="jbsalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Abandona ventana Alumno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbsalirActionPerformed"/>
@@ -169,6 +177,7 @@
     <Component class="javax.swing.JButton" name="jbeliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Elimina a un alumno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbeliminarActionPerformed"/>
@@ -177,6 +186,7 @@
     <Component class="javax.swing.JButton" name="jbnuevo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Limpia todos los campos de texto"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbnuevoActionPerformed"/>
@@ -185,28 +195,58 @@
     <Component class="javax.swing.JButton" name="jbguardar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Guarda los datos del alumno"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbguardarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrbestado">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Click para activo o Inactivo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jrbestadoStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtnombre">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Nombre del alumno"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtdni">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Ingrese solo n&#xfa;meros"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbbuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="toolTipText" type="java.lang.String" value="*Buscar por alumno por documento"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbbuscarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtapellido">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="*Apellido del alumno"/>
+      </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jdcfnac">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Estado">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="0" red="0" type="rgb"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
