@@ -72,15 +72,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTabla);
 
         jbsalir.setText("Salir");
@@ -152,20 +144,11 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
+        tabla.setRowCount(0);
         String aluselec = (String) jcbalumnos.getSelectedItem();
         AlumnoData alu = new AlumnoData();
         InscripcionData insc = new InscripcionData();
-        //insc.obtenerMateriasCursadas(aluselec.getIdAlumno());
-        String[] partes = aluselec.split("-");
-        int alselec = 0;
-        if (partes.length > 0) {
-            // Usar trim() para eliminar espacios en blanco alrededor del dni
-            int alumno = Integer.parseInt(partes[0].trim());
-            //JOptionPane.showMessageDialog(null, alumno);
-            // obtenemos el idMateria seleccionada buscandola por el nombre   
-            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
-            //JOptionPane.showMessageDialog(null, alselec);
-        }
+        int alselec=idAlumno();
         if (!"Seleccione alumno...".equals(aluselec)) {
             List<Materia> obtenerMateriaCursada = insc.obtenerMateriasCursadas(alselec);
             cargarTabla(obtenerMateriaCursada);
@@ -175,7 +158,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-        String aluselec = (String) jcbalumnos.getSelectedItem();
+        
+          String aluselec = (String) jcbalumnos.getSelectedItem();
         InscripcionData insc = new InscripcionData();
         AlumnoData alu = new AlumnoData();
         String[] partes = aluselec.split("-");
@@ -209,7 +193,9 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                 insc.actualizarNota(alselec, materia, nota);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Ingrese solo números");
+            JOptionPane.showMessageDialog(null, "Ingrese solo números ");
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
         }
 
 
@@ -246,11 +232,31 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla(List<Materia> obtenerMateriaCursada) {
-        tabla.setRowCount(0);
-        Inscripcion inscr = new Inscripcion();
+       InscripcionData insc = new InscripcionData();
+       int alselec=idAlumno();
         for (Materia materia : obtenerMateriaCursada) {
-            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), ""});
+            int notaselec= insc.buscarNota(materia.getIdMateria(),alselec );
+            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(),notaselec });
         }
     }
+    private int idAlumno(){
+       
+          String aluselec = (String) jcbalumnos.getSelectedItem();
+        InscripcionData insc = new InscripcionData();
+        AlumnoData alu = new AlumnoData();
+        String[] partes = aluselec.split("-");
+        int alselec = 0;
+        if (partes.length > 0) {
+            // Usar trim() para eliminar espacios en blanco alrededor del dni
+            int alumno = Integer.parseInt(partes[0].trim());
+            //JOptionPane.showMessageDialog(null, alumno);
+            // obtenemos el idMateria seleccionada buscandola por el nombre   
+            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
+            //JOptionPane.showMessageDialog(null, alselec);
+        }
+        return alselec;
+    }
+    }
+    
 
-}
+
