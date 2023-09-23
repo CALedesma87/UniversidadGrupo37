@@ -131,22 +131,33 @@ private InscripcionData inscripcionData;
     // Dividir la cadena en función de la coma y tomar la primera parte
     String[] partes = materiaSeleccionada.split(",");
     if (partes.length > 0) {
-        
+                
 // Usar trim() para eliminar espacios en blanco alrededor del nombre
         String materia = partes[0].trim(); 
+        //JOptionPane.showMessageDialog(null, "Usted Seleccionó: "+materia);
         
      // obtenemos el idMateria seleccionada buscandola por el nombre   
         int matselec = materiaData.idMateria(materia);
-        
+        //JOptionPane.showMessageDialog(null, "El ID de la materia es : "+matselec);
     //Luego hasta que no selecciona una materia no hago nada
     if (!"Seleccione materia...".equals(materiaSeleccionada)) {
     
-        
-        // Obtener la lista de alumnos inscritos en la materia seleccionada
+        //JOptionPane.showMessageDialog(null, "Ingreso al primer if");
+        // Obtenemos la lista de alumnos inscritos en la materia seleccionada
         List<Alumno> alumnosInscritos = inscripcionData.obtenerAlumnosPorMateria(matselec);
 
-        // Llenar la tabla con los alumnos inscritos en la materia
-        llenarTabla(alumnosInscritos);
+       // Verificamos si hay alumnos inscritos
+            if (!alumnosInscritos.isEmpty()) {
+                //JOptionPane.showMessageDialog(null, "Se verifico que halla alumnos inscriptos en "+matselec);
+                // Llenamos la tabla con los alumnos inscritos en la materia si hay alumnos
+                llenarTabla(alumnosInscritos);
+            } else {
+                // Limpiamos la tabla si no hay alumnos inscritos en la materia seleccionada
+                tabla.setRowCount(0);
+
+                // Despues de limpiar la tabla mostramos un msj que no hay alumnos inscriptos
+                JOptionPane.showMessageDialog(null, "No hay alumnos inscritos en esta materia.");
+            }
     }
     } 
     }//GEN-LAST:event_jcbmateriasActionPerformed
