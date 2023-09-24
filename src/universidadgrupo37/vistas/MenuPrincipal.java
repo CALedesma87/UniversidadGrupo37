@@ -1,14 +1,11 @@
 
 package universidadgrupo37.vistas;
 
-
 public class MenuPrincipal extends javax.swing.JFrame {
-
   
     public MenuPrincipal() {
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

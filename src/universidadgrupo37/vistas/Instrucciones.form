@@ -62,7 +62,7 @@
                   <Component id="jScrollPane3" pref="155" max="32767" attributes="0"/>
                   <Component id="jScrollPane4" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +89,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Alumno:&#xa;&#xa;-Se pueden agregar / eliminar alumnos.&#xa;-Se pueden buscar alumnos por DNI o ID.&#xa;&#xa;*Para agregar alumnos, debe completar los&#xa;campos de &apos;Documento&apos;, &apos;Apellido&apos;, &apos;Nombre&apos;&#xa;&apos;Estado&apos; (Activo / Inactivo), &apos;Fecha de Nac.&apos;"/>
+            <Property name="text" type="java.lang.String" value="Alumno:&#xa;&#xa;*Para agregar alumnos, debe completar los&#xa;campos de &apos;Documento&apos;, &apos;Apellido&apos;, &apos;Nombre&apos;&#xa;&apos;Estado&apos; (Activo / Inactivo), &apos;Fecha de Nac.&apos; y&#xa;luego seleccionar &apos;Nuevo&apos;.&#xa;&#xa;*Para buscar alumnos debe ingresar el ID o&#xa;el n&#xfa;mero de documento y luego seleccionar&#xa;&apos;Buscar&apos;.&#xa;&#xa;*Para modificar los datos de los alumnos&#xa;debe buscar primero al alumno por ID o&#xa;documento y luego de hacer los cambios &#xa;seleccionar &apos;Modificar&apos;."/>
             <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
@@ -97,11 +97,6 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="null"/>
-            </Property>
-          </AccessibilityProperties>
         </Component>
       </SubComponents>
     </Container>
@@ -126,7 +121,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Materia:&#xa;&#xa;-Se pueden agregar / eliminar materias.&#xa;-Se pueden buscar materias por nombre."/>
+            <Property name="text" type="java.lang.String" value="Materia:&#xa;&#xa;*Para buscar una materia debe ingresar &#xa;el ID y luego seleccionar &apos;Buscar&apos;.&#xa;&#xa;*Para modificar los datos de una materia &#xa;como el nombre, el a&#xf1;o o si esta activa, &#xa;debera buscar la materia primero y luego &#xa;modificar dichos datos y por ultimo sele-&#xa;ccionar &apos;Guardar&apos;.&#xa;&#xa;*Para eliminar una materia debera buscar&#xa;primero la materia y por &#xfa;ltimo seleccionar&#xa;&apos;Eliminar&apos;."/>
             <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
@@ -158,7 +153,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Administracion:&#xa; &#xa;\u005cManejo de inscripciones:&#xa;&#xa;-Se pueden agregar / eliminar inscripciones.&#xa;-Se pueden listar a los alumnos por materia&#xa;inscripta o no inscripta.&#xa;&#xa;\u005cManipulacion de notas:&#xa;&#xa;-Se pueden listar las materias cursadas por&#xa;alumno y modificar las notas." containsInvalidXMLChars="true"/>
+            <Property name="text" type="java.lang.String" value="Administracion:&#xa; &#xa;\u005cManejo de inscripciones:&#xa;&#xa;*Para inscribir a un alumno en una materia&#xa;debe seleccionar primero al alumno en la&#xa;lista, hacer click en &apos;Materias no Inscriptas&apos;&#xa;seleccionar la materia y luego seleccionar &#xa;&apos;Inscribir&apos;.&#xa;&#xa;*Para eliminar a un alumno en una materia&#xa;inscripta debe seleccionar primero al alumno&#xa;en la lista, hacer click en &apos;Materias Inscrip-&#xa;tas&apos;, seleccionar la materia y luego sele-&#xa;ccionar &apos;Anular Inscripcion&apos;.&#xa;&#xa;\u005cManipulacion de notas:&#xa;&#xa;*Para modificar las notas de cada materia,&#xa;debera seleccionar al alumno en la lista,&#xa;hacer doble click en el casillero debajo de &#xa;&apos;Nota&apos;, ingresar la nota correspondiente&#xa;(1-10 o 0.0-10.0) y seleccionar &apos;Guardar Nota&apos;" containsInvalidXMLChars="true"/>
             <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>
@@ -190,7 +185,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Consultas:&#xa;&#xa;-Se puede listar a la cantidad de alumnos&#xa;por materia."/>
+            <Property name="text" type="java.lang.String" value="Consultas:&#xa;&#xa;*Para ver la cantidad de alumnos por materia&#xa;tan solo debe seleccionar una de la lista y a&#xa;continuacion se le proporcionara toda la info&#xa;en la tabla de abajo."/>
             <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>

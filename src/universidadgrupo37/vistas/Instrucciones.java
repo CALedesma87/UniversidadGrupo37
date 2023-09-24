@@ -44,11 +44,10 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         jTextArea1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Alumno:\n\n-Se pueden agregar / eliminar alumnos.\n-Se pueden buscar alumnos por DNI o ID.\n\n*Para agregar alumnos, debe completar los\ncampos de 'Documento', 'Apellido', 'Nombre'\n'Estado' (Activo / Inactivo), 'Fecha de Nac.'");
+        jTextArea1.setText("Alumno:\n\n*Para agregar alumnos, debe completar los\ncampos de 'Documento', 'Apellido', 'Nombre'\n'Estado' (Activo / Inactivo), 'Fecha de Nac.' y\nluego seleccionar 'Nuevo'.\n\n*Para buscar alumnos debe ingresar el ID o\nel número de documento y luego seleccionar\n'Buscar'.\n\n*Para modificar los datos de los alumnos\ndebe buscar primero al alumno por ID o\ndocumento y luego de hacer los cambios \nseleccionar 'Modificar'.");
         jTextArea1.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);
-        jTextArea1.getAccessibleContext().setAccessibleParent(null);
 
         jTextArea2.setEditable(false);
         jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
@@ -56,7 +55,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         jTextArea2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
-        jTextArea2.setText("Materia:\n\n-Se pueden agregar / eliminar materias.\n-Se pueden buscar materias por nombre.");
+        jTextArea2.setText("Materia:\n\n*Para buscar una materia debe ingresar \nel ID y luego seleccionar 'Buscar'.\n\n*Para modificar los datos de una materia \ncomo el nombre, el año o si esta activa, \ndebera buscar la materia primero y luego \nmodificar dichos datos y por ultimo sele-\nccionar 'Guardar'.\n\n*Para eliminar una materia debera buscar\nprimero la materia y por último seleccionar\n'Eliminar'.");
         jTextArea2.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jTextArea2.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(jTextArea2);
@@ -67,7 +66,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         jTextArea3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea3.setRows(5);
-        jTextArea3.setText("Administracion:\n \n\\Manejo de inscripciones:\n\n-Se pueden agregar / eliminar inscripciones.\n-Se pueden listar a los alumnos por materia\ninscripta o no inscripta.\n\n\\Manipulacion de notas:\n\n-Se pueden listar las materias cursadas por\nalumno y modificar las notas.");
+        jTextArea3.setText("Administracion:\n \n\\Manejo de inscripciones:\n\n*Para inscribir a un alumno en una materia\ndebe seleccionar primero al alumno en la\nlista, hacer click en 'Materias no Inscriptas'\nseleccionar la materia y luego seleccionar \n'Inscribir'.\n\n*Para eliminar a un alumno en una materia\ninscripta debe seleccionar primero al alumno\nen la lista, hacer click en 'Materias Inscrip-\ntas', seleccionar la materia y luego sele-\nccionar 'Anular Inscripcion'.\n\n\\Manipulacion de notas:\n\n*Para modificar las notas de cada materia,\ndebera seleccionar al alumno en la lista,\nhacer doble click en el casillero debajo de \n'Nota', ingresar la nota correspondiente\n(1-10 o 0.0-10.0) y seleccionar 'Guardar Nota'");
         jTextArea3.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jTextArea3.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane3.setViewportView(jTextArea3);
@@ -78,7 +77,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         jTextArea4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jTextArea4.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea4.setRows(5);
-        jTextArea4.setText("Consultas:\n\n-Se puede listar a la cantidad de alumnos\npor materia.");
+        jTextArea4.setText("Consultas:\n\n*Para ver la cantidad de alumnos por materia\ntan solo debe seleccionar una de la lista y a\ncontinuacion se le proporcionara toda la info\nen la tabla de abajo.");
         jTextArea4.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jTextArea4.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane4.setViewportView(jTextArea4);
@@ -111,7 +110,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
