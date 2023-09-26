@@ -5,6 +5,7 @@
  */
 package universidadgrupo37.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import universidadgrupo37.accesoADatos.MateriaData;
@@ -103,6 +104,8 @@ public class GestionMateria extends javax.swing.JInternalFrame {
                 jbbuscarActionPerformed(evt);
             }
         });
+
+        jlestado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -277,10 +280,11 @@ public class GestionMateria extends javax.swing.JInternalFrame {
     private void jrbestadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrbestadoStateChanged
         // TODO add your handling code here:
         if(jrbestado.isSelected()){
-        jlestado.setText("Activo");
+            jlestado.setForeground(Color.BLUE);
+            jlestado.setText("Activo");
         }else{
-        jlestado.setText("");
-        }
+            jlestado.setForeground(Color.RED);
+            jlestado.setText("Inactivo");}
     }//GEN-LAST:event_jrbestadoStateChanged
 
 

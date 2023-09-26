@@ -166,8 +166,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-        
-          String aluselec = (String) jcbalumnos.getSelectedItem();
+
+        String aluselec = (String) jcbalumnos.getSelectedItem();
         InscripcionData insc = new InscripcionData();
         AlumnoData alu = new AlumnoData();
         String[] partes = aluselec.split("-");
@@ -202,7 +202,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números ");
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
         }
 
