@@ -197,4 +197,27 @@ public class MateriaData {
 
         return existe;
     }
+    
+    public String nombreM(String nombre) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String name = "";
+
+        try {
+            String sql = "SELECT nombre FROM materia WHERE nombre = ? AND estado = 1";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                name = rs.getString("nombre");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al verificar el nombre de la Materia en la base de datos: " + ex.getMessage());
+        }
+
+        return name;
+    }
 }

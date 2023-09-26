@@ -192,32 +192,32 @@ public class GestionMateria extends javax.swing.JInternalFrame {
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
         // TODO add your handling code here:
-        try{
-        // Obtener los valores de los campos
-        //int codigo = Integer.parseInt(jtcodigo.getText());
-        String nombre = jtnombre.getText();
-        int anio = Integer.parseInt(jtanio.getText());
-        boolean estado = jrbestado.isSelected();
-        
-        if (nombre.isEmpty() || jtanio.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete el campo nombre y año por favor.");
-            return;
+        try {
+            // Obtener los valores de los campos
+            //int codigo = Integer.parseInt(jtcodigo.getText());
+            String nombre = jtnombre.getText();
+            int anio = Integer.parseInt(jtanio.getText());
+            boolean estado = jrbestado.isSelected();
+
+            if (nombre.isEmpty() || jtanio.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Complete el campo nombre y año por favor.");
+                return;
+            }
+            //creamos un constructor de Materia y de MateriaData
+            Materia materia = new Materia(nombre, anio, estado);
+            MateriaData mat = new MateriaData();
+            String h = materia.getNombre();
+            //Verificamos si existe la materia previamente
+            if (h.equalsIgnoreCase(mat.nombreM(nombre))) {
+                JOptionPane.showMessageDialog(null, "La materia ya existe o esta anulada");
+            } else {
+                mat.guardarMateria(materia);
+                limpiarPlanilla();
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "El año debe contener solo números");
         }
-        //creamos un constructor de Materia y de MateriaData
-        Materia materia = new Materia(nombre.toLowerCase(), anio, estado);
-        MateriaData mat = new MateriaData();
-        //Verificamos si exite el id previamente
-        if(mat.existeMateriaN(nombre)){
-            JOptionPane.showMessageDialog(null, "La materia ya existe o esta anulada");
-            
-        }else{
-        mat.guardarMateria(materia);
-        limpiarPlanilla();
-      }
-        
-        }catch (NumberFormatException ex){
-          JOptionPane.showMessageDialog(null, "El año debe contener solo números");
-      }
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed

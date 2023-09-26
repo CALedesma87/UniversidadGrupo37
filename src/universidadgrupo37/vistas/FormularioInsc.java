@@ -2,6 +2,8 @@ package universidadgrupo37.vistas;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -13,12 +15,13 @@ import universidadgrupo37.entidades.Inscripcion;
 import universidadgrupo37.entidades.Materia;
 
 public class FormularioInsc extends javax.swing.JInternalFrame {
-private DefaultTableModel tabla= new DefaultTableModel();
-private Materia md = new Materia();
-private InscripcionData id = new InscripcionData();
-private MateriaData mds = new MateriaData();
-private Alumno al = new Alumno();
-private AlumnoData alu = new AlumnoData();
+
+    private DefaultTableModel tabla = new DefaultTableModel();
+    private Materia md = new Materia();
+    private InscripcionData id = new InscripcionData();
+    private MateriaData mds = new MateriaData();
+    private Alumno al = new Alumno();
+    private AlumnoData alu = new AlumnoData();
 
     public FormularioInsc() {
         initComponents();
@@ -27,7 +30,6 @@ private AlumnoData alu = new AlumnoData();
         crearCabecera();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -222,6 +224,7 @@ private AlumnoData alu = new AlumnoData();
         InscripcionData id = new InscripcionData();
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
+        boolean estado = jrbinscriptas.isSelected();
 
         try {
             int filaSeleccionada = jTable1.getSelectedRow();
@@ -251,12 +254,20 @@ private AlumnoData alu = new AlumnoData();
 
                 // Asignamos todos los valores a la inscripcion:
                 Inscripcion insc = new Inscripcion(aydiAl, angora, 0.0);
-                id.guardarInscripcion(insc);
+
+                if (estado == true) {
+                    throw new Exception("Solo pueden inscribirse materias no inscriptas!!!");
+                } else {
+                    id.guardarInscripcion(insc);
+                }
+
             }
 
         } catch (NullPointerException e) {
             //Hay que agregar los otros posibles errores que contenga esto:
             JOptionPane.showMessageDialog(null, e);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
 
     }//GEN-LAST:event_InscribirActionPerformed
@@ -289,7 +300,6 @@ private AlumnoData alu = new AlumnoData();
                 int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
 
                 int mat = md.idMateria(dPana);
-                
 
                 // Asignamos todos los valores a la inscripcion:
                 id.borrarInscripcionMateriaAlumno(alumSelec, mat);
@@ -299,8 +309,8 @@ private AlumnoData alu = new AlumnoData();
             //Hay que agregar los otros posibles errores que contenga esto:
             JOptionPane.showMessageDialog(null, e);
         }
-        
-        
+
+
     }//GEN-LAST:event_anularInscripcionActionPerformed
 
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
@@ -310,36 +320,38 @@ private AlumnoData alu = new AlumnoData();
     private void matNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matNoInscriptasActionPerformed
         //#Leer los comentarios en el codigo del siguiente JRadioButton#
         boolean estado = matNoInscriptas.isSelected();
-        if(estado == true){jrbinscriptas.setSelected(false);}
-        
+        if (estado == true) {
+            jrbinscriptas.setSelected(false);
+        }
+
         try {
 
             if (estado == true) {
                 String alumnoSeleccionado = (String) selecAlumno.getSelectedItem();
-                
+
                 String[] partes = alumnoSeleccionado.split("-");
-                
+
                 String alumno = partes[0].trim();
-                 //Vereficamos que seleccione un alumno antes
-                if(alumnoSeleccionado.equals("Seleccione Alumno...")){
+                //Vereficamos que seleccione un alumno antes
+                if (alumnoSeleccionado.equals("Seleccione Alumno...")) {
                     JOptionPane.showMessageDialog(null, "Debe Seleccionar una alumno");
                     return;
                 }
-                
+
                 int alumSelec = alu.idAlumno(Integer.parseInt(alumno));
-                
+
                 List<Materia> materias_1 = id.obtenerMateriasNoCursadas(alumSelec);
-                
+
                 llenarTabla(materias_1);
             }
 
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno..." );
-            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno...");
+
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-            
+
         }
 
     }//GEN-LAST:event_matNoInscriptasActionPerformed
@@ -347,8 +359,10 @@ private AlumnoData alu = new AlumnoData();
     private void jrbinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbinscriptasActionPerformed
         //Esto comprueba el estado del JRadioButton "Materias Inscriptas"
         boolean estado = jrbinscriptas.isSelected();
-        if(estado == true){matNoInscriptas.setSelected(false);}
-        
+        if (estado == true) {
+            matNoInscriptas.setSelected(false);
+        }
+
         //Hay que pulir los try-catch #Hay que hacer prueba de errores (No olvidarse de usarlos)
         try {
 
@@ -360,7 +374,7 @@ private AlumnoData alu = new AlumnoData();
                 //Seleccionamos la parte que nos interesa
                 String alumno = partes[0].trim();
                 //Vereficamos que seleccione un alumno antes
-                if(alumnoSeleccionado.equals("Seleccione Alumno...")){
+                if (alumnoSeleccionado.equals("Seleccione Alumno...")) {
                     JOptionPane.showMessageDialog(null, "Debe Seleccionar una alumno");
                     return;
                 }
@@ -370,16 +384,16 @@ private AlumnoData alu = new AlumnoData();
                 List<Materia> materias_1 = id.obtenerMateriasCursadas(alumSelec);
                 //Cargamos la JTable:
                 llenarTabla(materias_1);
-            
+
             }
 
         } catch (NullPointerException e) {
-           JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno...");
-            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno...");
+
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-            
+
         }
     }//GEN-LAST:event_jrbinscriptasActionPerformed
 
@@ -400,26 +414,26 @@ private AlumnoData alu = new AlumnoData();
     private javax.swing.JComboBox<String> selecAlumno;
     // End of variables declaration//GEN-END:variables
 
- private void crearCabecera(){
+    private void crearCabecera() {
         tabla.addColumn("ID");
         tabla.addColumn("Nombre");
         tabla.addColumn("Año");
         jTable1.setModel(tabla);
     }
- 
-  private void cargarComboBox(){
-        AlumnoData alu=new AlumnoData();
+
+    private void cargarComboBox() {
+        AlumnoData alu = new AlumnoData();
         List<Alumno> listaAlumno = alu.listarAlumnos();
 //        for(int i=0;alu.listarAlumnos().size()>i;i++){
 //          selecAlumno.addItem(alu.listarAlumnos().get(i)+"");
 //        } 
-for (Alumno alumno : listaAlumno) {
-        selecAlumno.addItem(alumno.getDni()+" - "+ alumno.getApellido() + ", " + alumno.getNombre());
+        for (Alumno alumno : listaAlumno) {
+            selecAlumno.addItem(alumno.getDni() + " - " + alumno.getApellido() + ", " + alumno.getNombre());
+        }
+
     }
 
-  }
-  
-  private void llenarTabla(List<Materia> materiasInscriptas) {
+    private void llenarTabla(List<Materia> materiasInscriptas) {
         // Limpiar la tabla
         tabla.setRowCount(0);
 
@@ -428,13 +442,14 @@ for (Alumno alumno : listaAlumno) {
             tabla.addRow(new Object[]{mats.getIdMateria(), mats.getNombre(), mats.getAnioMateria()});
         }
     }
-  private void limpiarPlanilla(){
-  //setea a 0 planilla excepto el combobox
-      
-  DefaultTableModel modeloLimpio = (DefaultTableModel) jTable1.getModel();
-    modeloLimpio.setRowCount(0);
-    matNoInscriptas.setSelected(false);
-    jrbinscriptas.setSelected(false);
-  }
-  
+
+    private void limpiarPlanilla() {
+        //setea a 0 planilla excepto el combobox
+
+        DefaultTableModel modeloLimpio = (DefaultTableModel) jTable1.getModel();
+        modeloLimpio.setRowCount(0);
+        matNoInscriptas.setSelected(false);
+        jrbinscriptas.setSelected(false);
+    }
+
 }
