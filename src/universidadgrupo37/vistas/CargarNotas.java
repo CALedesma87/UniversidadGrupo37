@@ -146,17 +146,21 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
-        tabla.setRowCount(0);
+   tabla.setRowCount(0);
         String aluselec = (String) jcbalumnos.getSelectedItem();
-        AlumnoData alu = new AlumnoData();
-        InscripcionData insc = new InscripcionData();
-        int alselec=idAlumno();
-        if (!"Seleccione alumno...".equals(aluselec)) {
-            List<Materia> obtenerMateriaCursada = insc.obtenerMateriasCursadas(alselec);
-            cargarTabla(obtenerMateriaCursada);
+
+        // Verificamos que se seleccionó "Seleccione alumno...", para que no salga la NumberFormatException
+        if ("Selecione alumno...".equals(aluselec)) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un Alumno de la lista");
+            return;
         }
 
+        AlumnoData alu = new AlumnoData();
+        InscripcionData insc = new InscripcionData();
+        int alselec = idAlumno();
 
+        List<Materia> obtenerMateriaCursada = insc.obtenerMateriasCursadas(alselec);
+        cargarTabla(obtenerMateriaCursada);
     }//GEN-LAST:event_jcbalumnosActionPerformed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
@@ -237,13 +241,13 @@ public class CargarNotas extends javax.swing.JInternalFrame {
        InscripcionData insc = new InscripcionData();
        int alselec=idAlumno();
         for (Materia materia : obtenerMateriaCursada) {
-            int notaselec= insc.buscarNota(materia.getIdMateria(),alselec );
+            double notaselec= insc.buscarNota(materia.getIdMateria(),alselec );
             tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(),notaselec });
         }
     }
     private int idAlumno(){
        
-          String aluselec = (String) jcbalumnos.getSelectedItem();
+        String aluselec = (String) jcbalumnos.getSelectedItem();
         InscripcionData insc = new InscripcionData();
         AlumnoData alu = new AlumnoData();
         String[] partes = aluselec.split("-");

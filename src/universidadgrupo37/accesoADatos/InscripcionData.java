@@ -231,11 +231,11 @@ public class InscripcionData {
         return alumnosMat;
     }
 
-    public int buscarNota(int idMateria, int idAlumno) {
+    public double buscarNota(int idMateria, int idAlumno) {
         String sql = "SELECT nota FROM inscripcion WHERE idMateria=? AND idAlumno=?";
         PreparedStatement ps = null;
         ResultSet rs = null;
-        int nota = 0;
+        double nota = 0;
 
         try {
 
@@ -245,7 +245,7 @@ public class InscripcionData {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                nota = rs.getInt("nota");
+                nota = rs.getDouble("nota");
             }
             ps.close();
 
