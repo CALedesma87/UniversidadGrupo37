@@ -182,19 +182,29 @@ public class AlumnoData {
     
     public boolean existeDni(int dni) { //metodo para verificar si exite el dni en la base de dato
     boolean existe = false;
+    boolean inactivo = false;
     PreparedStatement ps = null;
     ResultSet rs = null;
 
     try {
-        String sql = "SELECT idAlumno FROM alumno WHERE dni = ? AND estado = 1";
+        String sql = "SELECT idAlumno FROM alumno WHERE dni = ? AND (estado = 1 OR estado = 0)";
         ps = con.prepareStatement(sql);
         ps.setInt(1, dni);
         rs = ps.executeQuery();
 
         if (rs.next()) {
-            existe = true; // Hay un registro con el mismo DNI y estado activo
+            int estado = rs.getInt("estado");
+            if (estado == 1) {
+                existe = true; // Hay un registro con el mismo DNI y estado activo
+            } else if (estado == 0) {
+                inactivo = true; // El alumno está inactivo
+            }
         }
-         ps.close();
+        ps.close();
+
+        if (inactivo) {
+            JOptionPane.showMessageDialog(null, "El alumno con DNI " + dni + " se encuentra en la base de datos, pero está INACTIVO.");
+        }
     } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, "Error al verificar el DNI en la base de datos: " + ex.getMessage());
     } 

@@ -73,6 +73,8 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTabla.getTableHeader().setResizingAllowed(false);
+        jTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTabla);
 
         jbsalir.setText("Salir");

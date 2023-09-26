@@ -288,16 +288,17 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             boolean estado = jrbestado.isSelected();
             // Obtener la fecha de nacimiento en formato Date
             java.util.Date utilDate = jdcfnac.getDate();
-
-            // Convertir la fecha de util.Date a LocalDate
-            Instant instant = utilDate.toInstant();
-            LocalDate fechaNacimiento = instant.atZone(ZoneId.systemDefault()).toLocalDate();
-
+            
             // Verificar que los campos obligatorios no estén vacíos
             if (jtdni.getText().isEmpty() || apellido.isEmpty() || nombre.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
                 return;
             }
+            // Convertir la fecha de util.Date a LocalDate
+            Instant instant = utilDate.toInstant();
+            LocalDate fechaNacimiento = instant.atZone(ZoneId.systemDefault()).toLocalDate();
+
+            
             Alumno alumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
             AlumnoData alu = new AlumnoData();
             if (alu.existeDni(dni)) {

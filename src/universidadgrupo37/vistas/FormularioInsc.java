@@ -105,6 +105,8 @@ public class FormularioInsc extends javax.swing.JInternalFrame {
                 "ID", "Nombre", "Año"
             }
         ));
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jTable1PropertyChange(evt);
