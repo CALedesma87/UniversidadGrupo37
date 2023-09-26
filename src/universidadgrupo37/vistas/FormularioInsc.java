@@ -225,11 +225,11 @@ public class FormularioInsc extends javax.swing.JInternalFrame {
         AlumnoData ad = new AlumnoData();
         MateriaData md = new MateriaData();
         boolean estado = jrbinscriptas.isSelected();
-
+        
         try {
             int filaSeleccionada = jTable1.getSelectedRow();
             String dPana = "";
-
+            
             if (filaSeleccionada != -1) {
                 // Crea un arreglo para almacenar los datos de la fila
                 Object[] fila = new Object[tabla.getColumnCount()];
@@ -238,7 +238,7 @@ public class FormularioInsc extends javax.swing.JInternalFrame {
                     fila[i] = tabla.getValueAt(filaSeleccionada, i);
                 }
                 // le asignamos el valor a la materia:
-
+                
                 dPana = fila[1].toString();
 
                 // le asignamos el valor al alumno:

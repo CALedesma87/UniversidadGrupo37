@@ -298,6 +298,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
                 return;
             }
+            
             Alumno alumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
             AlumnoData alu = new AlumnoData();
             if (alu.existeDni(dni)) {
