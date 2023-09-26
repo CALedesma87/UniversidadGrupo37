@@ -148,7 +148,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jcbalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbalumnosActionPerformed
         // TODO add your handling code here:
-   tabla.setRowCount(0);
+        tabla.setRowCount(0);
         String aluselec = (String) jcbalumnos.getSelectedItem();
 
         // Verificamos que se seleccionó "Seleccione alumno...", para que no salga la NumberFormatException
@@ -167,20 +167,9 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
 
-        String aluselec = (String) jcbalumnos.getSelectedItem();
-        InscripcionData insc = new InscripcionData();
-        AlumnoData alu = new AlumnoData();
-        String[] partes = aluselec.split("-");
-        int alselec = 0;
-        if (partes.length > 0) {
-            // Usar trim() para eliminar espacios en blanco alrededor del dni
-            int alumno = Integer.parseInt(partes[0].trim());
-            //JOptionPane.showMessageDialog(null, alumno);
-            // obtenemos el idMateria seleccionada buscandola por el nombre   
-            alselec = alu.buscarAlumnoPorDni(alumno).getIdAlumno();
-            //JOptionPane.showMessageDialog(null, alselec);
-        }
 
+        InscripcionData insc = new InscripcionData();
+       int alselec = idAlumno();
         try {
             //extraer el idMateria de la tabla en la fila seleccionada columna 0
             int materia = Integer.parseInt(tabla.getValueAt(jTabla.getSelectedRow(), 0).toString());
@@ -188,23 +177,27 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             //obtener la nota ingresada en la fila seleccionada columna 2 
             double nota = Double.parseDouble(tabla.getValueAt(jTabla.getSelectedRow(), 2).toString());
             //cuando la celda nota esta vacia 
-            if (jTabla.getValueAt(jTabla.getSelectedRow(), 2) == null) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar una nota");
-            }
+
             //asegurarnos que seleccione una fila
             if (jTabla.getSelectedRow() == -1) {
 
                 JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
 
-            } else {
+            } else if(nota <=10){
                 //llamar al metodo para guardar la nota
                 insc.actualizarNota(alselec, materia, nota);
+            } else {
+                JOptionPane.showMessageDialog(null, "La nota ingresada debe ser igual o menor a 10");
             }
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números ");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
         }
+        //            if (jTabla.getValueAt(jTabla.getSelectedRow(), 2) == null) {
+//                JOptionPane.showMessageDialog(null, "Debe ingresar una nota");
+//            }
 
 
     }//GEN-LAST:event_jbguardarActionPerformed
@@ -240,15 +233,16 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla(List<Materia> obtenerMateriaCursada) {
-       InscripcionData insc = new InscripcionData();
-       int alselec=idAlumno();
+        InscripcionData insc = new InscripcionData();
+        int alselec = idAlumno();
         for (Materia materia : obtenerMateriaCursada) {
-            double notaselec= insc.buscarNota(materia.getIdMateria(),alselec );
-            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(),notaselec });
+            double notaselec = insc.buscarNota(materia.getIdMateria(), alselec);
+            tabla.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), notaselec});
         }
     }
-    private int idAlumno(){
-       
+
+    private int idAlumno() {
+
         String aluselec = (String) jcbalumnos.getSelectedItem();
         InscripcionData insc = new InscripcionData();
         AlumnoData alu = new AlumnoData();
@@ -264,7 +258,4 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         }
         return alselec;
     }
-    }
-    
-
-
+}
