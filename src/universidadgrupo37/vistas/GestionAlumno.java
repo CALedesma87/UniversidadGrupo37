@@ -240,8 +240,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
             return;
         }
-        int dni = Integer.parseInt(text);
-        alu.existeDni(dni);
+     
         try {
 
             int numconver = Integer.parseInt(text);
