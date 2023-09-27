@@ -1,5 +1,6 @@
 package universidadgrupo37.vistas;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     };
 
     public CargarNotas() {
+        this.getContentPane().setBackground(Color.WHITE);
         initComponents();
         setTitle("Carga de notas");
         cargarComboBox();
@@ -34,20 +36,19 @@ public class CargarNotas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jcbalumnos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTabla = new javax.swing.JTable();
         jbsalir = new javax.swing.JButton();
         jbguardar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setClosable(true);
 
-        jLabel1.setText("Carga de notas");
-
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Seleccione Alumno:");
 
         jcbalumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione alumno..." }));
@@ -93,24 +94,21 @@ public class CargarNotas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/universidad-de-la-punta.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())
@@ -120,18 +118,22 @@ public class CargarNotas extends javax.swing.JInternalFrame {
                         .addGap(54, 54, 54)
                         .addComponent(jbsalir)
                         .addGap(15, 15, 15))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(25, 25, 25)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jcbalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbsalir)
                     .addComponent(jbguardar))
@@ -171,24 +173,29 @@ public class CargarNotas extends javax.swing.JInternalFrame {
         InscripcionData insc = new InscripcionData();
        int alselec = idAlumno();
         try {
+            int fila=jTabla.getSelectedRow();
             //extraer el idMateria de la tabla en la fila seleccionada columna 0
-            int materia = Integer.parseInt(tabla.getValueAt(jTabla.getSelectedRow(), 0).toString());
+            int materia = Integer.parseInt(jTabla.getValueAt(fila, 0).toString());
 
             //obtener la nota ingresada en la fila seleccionada columna 2 
-            double nota = Double.parseDouble(tabla.getValueAt(jTabla.getSelectedRow(), 2).toString());
-            //cuando la celda nota esta vacia 
+            double nota = Double.parseDouble(jTabla.getValueAt(fila, 2).toString());
+//            cuando la celda nota esta vacia 
 
             //asegurarnos que seleccione una fila
-            if (jTabla.getSelectedRow() == -1) {
+            if (fila == -1) {
 
                 JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
 
-            } else if(nota <=10){
+            } else if(nota>0 && nota <=10){
                 //llamar al metodo para guardar la nota
                 insc.actualizarNota(alselec, materia, nota);
+               
             } else {
                 JOptionPane.showMessageDialog(null, "La nota ingresada debe ser igual o menor a 10");
             }
+//JOptionPane.showMessageDialog(null, nota);
+
+
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números ");

@@ -1,6 +1,10 @@
 
 package universidadgrupo37.vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 public class MenuPrincipal extends javax.swing.JFrame {
   
     public MenuPrincipal() {
@@ -15,7 +19,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/universidadgrupo37/imagen/fondo.jpg"));
+        Image image = icon.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         FormAlumno = new javax.swing.JMenuItem();
@@ -26,9 +36,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -51,6 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGap(0, 410, Short.MAX_VALUE)
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/estudiante.png"))); // NOI18N
         jMenu1.setText("Alumno");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +79,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/libro.png"))); // NOI18N
         jMenu2.setText("Materia");
 
         jMenuItem2.setText("Formulario de Materia");
@@ -80,6 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/contrato.png"))); // NOI18N
         jMenu3.setText("Administracion");
 
         jMenuItem3.setText("Manejo de Inscripciones");
@@ -100,6 +113,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/consulta.png"))); // NOI18N
         jMenu4.setText("Consultas");
 
         jMenuItem5.setText("Alumnos por Materia");
@@ -112,9 +126,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Salir");
-        jMenuBar1.add(jMenu5);
-
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/signo-de-interrogacion.png"))); // NOI18N
         jMenu8.setText("Ayuda");
 
         jMenuItem7.setText("Instrucciones");
@@ -126,6 +138,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu8.add(jMenuItem7);
 
         jMenuBar1.add(jMenu8);
+
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/salir.png"))); // NOI18N
+        jMenu5.setText("Salir");
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 

@@ -4,6 +4,8 @@
  */
 package universidadgrupo37.vistas;
 
+import java.awt.Color;
+
 
 public class Instrucciones extends javax.swing.JInternalFrame {
 
@@ -11,6 +13,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
      * Creates new form Instrucciones
      */
     public Instrucciones() {
+        this.getContentPane().setBackground(Color.WHITE);
         initComponents();
         
     }
