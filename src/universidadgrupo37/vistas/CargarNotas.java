@@ -169,11 +169,10 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
 
-
         InscripcionData insc = new InscripcionData();
-       int alselec = idAlumno();
+        int alselec = idAlumno();
         try {
-            int fila=jTabla.getSelectedRow();
+            int fila = jTabla.getSelectedRow();
             //extraer el idMateria de la tabla en la fila seleccionada columna 0
             int materia = Integer.parseInt(jTabla.getValueAt(fila, 0).toString());
 
@@ -186,16 +185,13 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Usted debe seleccionar una fila");
 
-            } else if(nota>0 && nota <=10){
+            } else if (nota > 0 && nota <= 10) {
                 //llamar al metodo para guardar la nota
                 insc.actualizarNota(alselec, materia, nota);
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, "La nota ingresada debe ser igual o menor a 10");
             }
-//JOptionPane.showMessageDialog(null, nota);
-
-
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números ");
@@ -234,8 +230,13 @@ public class CargarNotas extends javax.swing.JInternalFrame {
 
     private void cargarComboBox() {
         AlumnoData alu = new AlumnoData();
-        for (int i = 0; alu.listarAlumnos().size() > i; i++) {
-            jcbalumnos.addItem(alu.listarAlumnos().get(i) + "");
+        List<Alumno> listaAlumno = alu.listarAlumnos();
+//        for (int i = 0; alu.listarAlumnos().size() > i; i++) {
+//            jcbalumnos.addItem(alu.listarAlumnos().get(i) + "");
+//          
+//        }
+        for (Alumno alumno : listaAlumno) {
+            jcbalumnos.addItem(alumno.getDni() + " - " + alumno.getApellido() + ", " + alumno.getNombre());
         }
     }
 

@@ -1,4 +1,3 @@
-
 package universidadgrupo37.vistas;
 
 import java.awt.Color;
@@ -10,7 +9,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 import universidadgrupo37.accesoADatos.AlumnoData;
 import universidadgrupo37.entidades.Alumno;
-        
+
 public class GestionAlumno extends javax.swing.JInternalFrame {
 
     public GestionAlumno() {
@@ -19,7 +18,6 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         setTitle("Alumnos");
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -229,22 +227,27 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
 
     private void jbsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbsalirActionPerformed
         // TODO add your handling code here:
-         setVisible(false);  //Cerrar ventana
+        setVisible(false);  //Cerrar ventana
     }//GEN-LAST:event_jbsalirActionPerformed
 
     private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
         //Este si me quedo, también se puede mejorar!
         String text = jtdni.getText();
-        
+
         AlumnoData alu = new AlumnoData();
+        //Verificamos que el campo Documento no este vacio antes de seguir buscando
+        if (text.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
+            return;
+        }
+        int dni = Integer.parseInt(text);
+        alu.existeDni(dni);
         try {
-            if (text.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
-            }
+
             int numconver = Integer.parseInt(text);
             Alumno en = alu.buscarAlumnoPorDni(numconver);
-            
-            jtnombre.setText(en.getNombre());            
+
+            jtnombre.setText(en.getNombre());
             jtapellido.setText(en.getApellido());
             jrbestado.setSelected(en.isEstado());
             jtID.setText(String.valueOf(en.getIdAlumno()));
@@ -253,7 +256,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             } else {
                 jdcfnac.setDate(null); // Para borrar la fecha si no hay fecha de nacimiento
             }
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números.");
         } catch (NullPointerException e) {
@@ -267,21 +270,22 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
         //Esto de aca deberia de poder mejorarse, no logro que lance bien las excepciones.
         String text = jtdni.getText();
         AlumnoData alu = new AlumnoData();
-        
-        try{
+
+        try {
             int numconver = Integer.parseInt(text);
             Alumno en = alu.buscarAlumnoPorDni(numconver);
-            alu.eliminarAlumno(en.getIdAlumno());
-            
-            
-        }
-        catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null,"Ingrese solo numeros! [DNI]");
-        }
-        catch(NullPointerException e){
+            if (en.isEstado() == false) {
+                JOptionPane.showMessageDialog(null, "El alumno ya se encuentra eliminado");
+            } else {
+                alu.eliminarAlumno(en.getIdAlumno());
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros! [DNI]");
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "El alumno se encuentra actualmente inactivo.");
         }
-        
+
     }//GEN-LAST:event_jbeliminarActionPerformed
 
     private void jbnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnuevoActionPerformed
@@ -294,7 +298,7 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             boolean estado = jrbestado.isSelected();
             // Obtener la fecha de nacimiento en formato Date
             java.util.Date utilDate = jdcfnac.getDate();
-            
+
             // Verificar que los campos obligatorios no estén vacíos
             if (jtdni.getText().isEmpty() || apellido.isEmpty() || nombre.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios.");
@@ -304,7 +308,6 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
             Instant instant = utilDate.toInstant();
             LocalDate fechaNacimiento = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 
-            
             Alumno alumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
             AlumnoData alu = new AlumnoData();
             if (alu.existeDni(dni)) {
@@ -321,7 +324,12 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbnuevoActionPerformed
 
     private void jbmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmodificarActionPerformed
-
+        // Verificar que los campos obligatorios no estén vacíos
+        if (jtdni.getText().isEmpty() || jtapellido.getText().isEmpty() || jtnombre.getText().isEmpty()
+                || jtID.getText().isEmpty() || jdcfnac.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "No hay datos a modificar.");
+            return;
+        }
         try {
             // Obtener los valores de los campos
             int dni = Integer.parseInt(jtdni.getText());
@@ -354,12 +362,13 @@ public class GestionAlumno extends javax.swing.JInternalFrame {
 
     private void jrbestadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrbestadoStateChanged
         // TODO add your handling code here:
-        if(jrbestado.isSelected()){
+        if (jrbestado.isSelected()) {
             Estado.setForeground(Color.BLUE);
             Estado.setText("Activo");
-        }else{
+        } else {
             Estado.setForeground(Color.RED);
-            Estado.setText("Inactivo");}
+            Estado.setText("Inactivo");
+        }
     }//GEN-LAST:event_jrbestadoStateChanged
 
     private void jtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIDActionPerformed

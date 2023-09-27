@@ -127,13 +127,13 @@ private InscripcionData inscripcionData;
 // Obtener la materia seleccionada desde el comboBox
     String materiaSeleccionada = (String) jcbmaterias.getSelectedItem();
     
-    // Dividir la cadena en función de la coma y tomar la primera parte
-    String[] partes = materiaSeleccionada.split(",");
+    // Dividir la cadena en función de la - y tomar la primera parte
+    String[] partes = materiaSeleccionada.split("-");
     if (partes.length > 0) {
                 
 // Usar trim() para eliminar espacios en blanco alrededor del nombre
         String materia = partes[0].trim(); 
-        //JOptionPane.showMessageDialog(null, "Usted Seleccionó: "+materia);
+//      JOptionPane.showMessageDialog(null, "Usted Seleccionó: "+materia);
         
      // obtenemos el idMateria seleccionada buscandola por el nombre   
         int matselec = materiaData.idMateria(materia);
@@ -180,9 +180,15 @@ private void crearCabecera(){
     }
  private void cargarComboBox(){
         MateriaData mat =new MateriaData();
-        for(int i=0;mat.listarMaterias().size()>i;i++){
-          jcbmaterias.addItem(mat.listarMaterias().get(i)+"");
-        } 
+        List <Materia> materiasel = mat.listarMaterias();
+ 
+//        for(int i=0;mat.listarMaterias().size()>i;i++){
+//          jcbmaterias.addItem(mat.listarMaterias().get(i)+"");
+//        } 
+        for(Materia materia : materiasel){
+        jcbmaterias.addItem(materia.getNombre()+ " - Año: "+materia.getAnioMateria());
+        }
+
     } 
  
 private void llenarTabla(List<Alumno> alumnosInscritos) {

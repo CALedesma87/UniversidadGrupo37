@@ -47,7 +47,7 @@ public class Instrucciones extends javax.swing.JInternalFrame {
         jTextArea1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Alumno:\n\n*Para agregar alumnos, debe completar los\ncampos de 'Documento', 'Apellido', 'Nombre'\n'Estado' (Activo / Inactivo), 'Fecha de Nac.' y\nluego seleccionar 'Nuevo'.\n\n*Para buscar alumnos debe ingresar el ID o\nel número de documento y luego seleccionar\n'Buscar'.\n\n*Para modificar los datos de los alumnos\ndebe buscar primero al alumno por ID o\ndocumento y luego de hacer los cambios \nseleccionar 'Modificar'.");
+        jTextArea1.setText("Alumno:\n\n*Para agregar alumnos, debe completar los\ncampos de 'Documento', 'Apellido', 'Nombre'\n'Estado' (Activo / Inactivo), 'Fecha de Nac.' y\nluego seleccionar 'Nuevo'.\n\n*Para buscar alumnos debe ingresar \nel número de documento y luego seleccionar\n'Buscar'.\n\n*Para modificar los datos de los alumnos\ndebe buscar primero al alumno por el\ndocumento y luego de hacer los cambios \nseleccionar 'Modificar'.");
         jTextArea1.setSelectedTextColor(new java.awt.Color(255, 255, 0));
         jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);

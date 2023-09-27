@@ -15,10 +15,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
         ImageIcon icon = new ImageIcon(getClass().getResource("/universidadgrupo37/imagen/fondo.jpg"));
         Image image = icon.getImage();
         escritorio = new javax.swing.JDesktopPane(){
@@ -38,15 +34,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-
-        jMenuItem1.setText("jMenuItem1");
-
-        jMenuItem6.setText("jMenuItem6");
-
-        jMenu6.setText("jMenu6");
-
-        jMenu7.setText("jMenu7");
+        jmSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,9 +127,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/salir.png"))); // NOI18N
-        jMenu5.setText("Salir");
-        jMenuBar1.add(jMenu5);
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadgrupo37/imagen/salir.png"))); // NOI18N
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -225,6 +218,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(ins);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        // TODO add your handling code here:
+        //Finaliza la ejecucion del soft
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -264,17 +263,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenu jmSalir;
     // End of variables declaration//GEN-END:variables
 }

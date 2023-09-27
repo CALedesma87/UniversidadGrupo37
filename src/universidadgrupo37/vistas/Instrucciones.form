@@ -89,7 +89,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Alumno:&#xa;&#xa;*Para agregar alumnos, debe completar los&#xa;campos de &apos;Documento&apos;, &apos;Apellido&apos;, &apos;Nombre&apos;&#xa;&apos;Estado&apos; (Activo / Inactivo), &apos;Fecha de Nac.&apos; y&#xa;luego seleccionar &apos;Nuevo&apos;.&#xa;&#xa;*Para buscar alumnos debe ingresar el ID o&#xa;el n&#xfa;mero de documento y luego seleccionar&#xa;&apos;Buscar&apos;.&#xa;&#xa;*Para modificar los datos de los alumnos&#xa;debe buscar primero al alumno por ID o&#xa;documento y luego de hacer los cambios &#xa;seleccionar &apos;Modificar&apos;."/>
+            <Property name="text" type="java.lang.String" value="Alumno:&#xa;&#xa;*Para agregar alumnos, debe completar los&#xa;campos de &apos;Documento&apos;, &apos;Apellido&apos;, &apos;Nombre&apos;&#xa;&apos;Estado&apos; (Activo / Inactivo), &apos;Fecha de Nac.&apos; y&#xa;luego seleccionar &apos;Nuevo&apos;.&#xa;&#xa;*Para buscar alumnos debe ingresar &#xa;el n&#xfa;mero de documento y luego seleccionar&#xa;&apos;Buscar&apos;.&#xa;&#xa;*Para modificar los datos de los alumnos&#xa;debe buscar primero al alumno por el&#xa;documento y luego de hacer los cambios &#xa;seleccionar &apos;Modificar&apos;."/>
             <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="ff" red="ff" type="rgb"/>
             </Property>

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package universidadgrupo37.vistas;
 
 import java.awt.Color;
@@ -12,17 +8,12 @@ import universidadgrupo37.accesoADatos.MateriaData;
 import universidadgrupo37.entidades.Alumno;
 import universidadgrupo37.entidades.Materia;
 
-/**
- *
- * @author Usuario
- */
-public class GestionMateria extends javax.swing.JInternalFrame  {
 
-    /**
-     * Creates new form GestionMateria
-     */
+public class GestionMateria extends javax.swing.JInternalFrame {
+
+  
     public GestionMateria() {
-         this.getContentPane().setBackground(Color.WHITE);
+        this.getContentPane().setBackground(Color.WHITE);
         initComponents();
         setTitle("Materia");
     }
@@ -231,66 +222,64 @@ public class GestionMateria extends javax.swing.JInternalFrame  {
 
     private void jbbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarActionPerformed
         // TODO add your handling code here:
-        
-          String text = jtcodigo.getText();
-          MateriaData mat =new MateriaData();
-          
-          try{
-            if (text.isEmpty()){
+
+        String text = jtcodigo.getText();
+        MateriaData mat = new MateriaData();
+        if (text.isEmpty()) {
             JOptionPane.showMessageDialog(null, "El campo Documento no debe estar vacio.");
-            }
+            return;
+        }
+        try {
+
             int idmat = Integer.parseInt(text);
             Materia mat1 = mat.buscarMateria(idmat);
-            jtnombre.setText(mat1.getNombre()); 
+            jtnombre.setText(mat1.getNombre());
             jtanio.setText(String.valueOf(mat1.getAnioMateria()));//convierte el int en String para poder setearlo en el TextField
             jrbestado.setSelected(mat1.isActivo());
-          
-            
-        }
-        catch(NumberFormatException e){
+
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese solo números.");
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "La materia no se encuentra en la Base de Datos.");
-           
+
         }
-                           
+
     }//GEN-LAST:event_jbbuscarActionPerformed
 
     private void jbnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnuevoActionPerformed
         // TODO add your handling code here:
-        
+
         limpiarPlanilla();
     }//GEN-LAST:event_jbnuevoActionPerformed
 
     private void jbeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbeliminarActionPerformed
         // TODO add your handling code here:
         MateriaData matData = new MateriaData();
-        
-        
-        try{
-            if(jtcodigo.getText().isEmpty()|| jtnombre.getText().isEmpty()||jtanio.getText().isEmpty()||!jrbestado.isSelected()){
-            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacio y/o el estado debe estar activo");
-            return;
-            }else{
-            int matid = Integer.parseInt(jtcodigo.getText());
-            matData.eliminarMateria(matid);
+
+        try {
+            if (jtcodigo.getText().isEmpty() || jtnombre.getText().isEmpty() || jtanio.getText().isEmpty() || !jrbestado.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Los campos no deben estar vacio y/o el estado debe estar activo");
+                return;
+            } else {
+                int matid = Integer.parseInt(jtcodigo.getText());
+                matData.eliminarMateria(matid);
             }
-            
-            
-        }catch(NullPointerException ex){
-        JOptionPane.showMessageDialog(null, ex);
+
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        
+
     }//GEN-LAST:event_jbeliminarActionPerformed
 
     private void jrbestadoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrbestadoStateChanged
         // TODO add your handling code here:
-        if(jrbestado.isSelected()){
+        if (jrbestado.isSelected()) {
             jlestado.setForeground(Color.BLUE);
             jlestado.setText("Activo");
-        }else{
+        } else {
             jlestado.setForeground(Color.RED);
-            jlestado.setText("Inactivo");}
+            jlestado.setText("Inactivo");
+        }
     }//GEN-LAST:event_jrbestadoStateChanged
 
 
@@ -312,11 +301,11 @@ public class GestionMateria extends javax.swing.JInternalFrame  {
     private javax.swing.JTextField jtnombre;
     // End of variables declaration//GEN-END:variables
 
-private void limpiarPlanilla(){
-   jtcodigo.setText(""); // Limpia los campos
-    jtnombre.setText("");
-    jtanio.setText("");
-    jrbestado.setSelected(false);
-    jlestado.setText("");
-  }
+    private void limpiarPlanilla() {
+        jtcodigo.setText(""); // Limpia los campos
+        jtnombre.setText("");
+        jtanio.setText("");
+        jrbestado.setSelected(false);
+        jlestado.setText("");
+    }
 }
